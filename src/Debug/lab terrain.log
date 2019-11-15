@@ -1,0 +1,15 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(452,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (lab terrain.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  main.cpp
+C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(44,1): warning C4305: '=': truncation from 'double' to 'float'
+C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(45,1): warning C4305: '=': truncation from 'double' to 'float'
+C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(53,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(55,14): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(59,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(61,21): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(64,1): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(66,1): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(74,1): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(222,1): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(423,1): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(426,1): warning C4305: 'initializing': truncation from 'double' to 'float'
+  lab terrain.vcxproj -> C:\Dev\IntroToGraphics\QuarterProject\Debug\QuarterProject.exe
