@@ -38,10 +38,10 @@ out vec3 vertex_normal;
 out vec2 vertex_tex;
 void main()
 {
-	float height = noise(vertPos, 11, 0.1, 0.8);
-	//float baseheight = noise(vertPos, 4, 0.004, 0.3);
-	//baseheight = pow(baseheight, 5)*3;
-	//height = baseheight*height;
+	float height = noise(vertPos, 11, 3.0, 0.4);
+	float baseheight = noise(vertPos, 4, 0.8, 1.0);
+	baseheight = pow(baseheight, 4)*3;
+	height = baseheight*height;
 	height*=.6;
 
 	vec3 tpos1 = vertPos + normalize(vertPos) * height;
@@ -49,6 +49,7 @@ void main()
 	gl_Position = P * V * tpos;
 
 	vertex_normal = vec4(M * vec4(normalize(vertPos),0.0)).xyz;
+	vertex_normal = normalize(vertPos);
 	vertex_pos = tpos.xyz;
 	vertex_tex = vec2(vertex_normal.x / 2.0 + 0.5, vertex_normal.y / 2.0 + 0.5);
 }
