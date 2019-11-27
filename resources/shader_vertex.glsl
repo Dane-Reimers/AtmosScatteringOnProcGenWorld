@@ -45,6 +45,9 @@ void main()
 	height*=.6;
 
 	vec3 tpos1 = vertPos + normalize(vertPos) * height;
+
+	tpos1 = vertPos + normalize(vertPos) * .01;
+
 	vec4 tpos =  M * vec4(tpos1, 1.0);
 	gl_Position = P * V * tpos;
 

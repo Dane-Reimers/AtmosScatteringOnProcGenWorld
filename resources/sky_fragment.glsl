@@ -8,28 +8,15 @@ uniform vec3 campos;
 uniform sampler2D tex;
 uniform sampler2D tex2;
 
+vec3 lightPos = vec3(0, -1100, 0);
 void main()
 {
-//vec3 n = normalize(vertex_normal);
-//vec3 lp=vec3(10,-20,-100);
-//vec3 ld = normalize(vertex_pos - lp);
-//float diffuse = dot(n,ld);
-//
-//color.rgb = texture(tex, vertex_tex * 5).rgb;
-//
-//color.rgb *= diffuse*0.7;
-//
-//vec3 cd = normalize(vertex_pos - campos);
-//vec3 h = normalize(cd+ld);
-//float spec = dot(n,h);
-//spec = clamp(spec,0,1);
-//spec = pow(spec,20);
-//color.rgb += vec3(1,1,1)*spec*0.3;
-//color.a=1;
-//
-
-color.rgb = texture(tex, vertex_tex * 50).rgb;
-color.a=1;
-color.rgb *= (length(vertex_pos) - 5000) / 100.0 + 0.4;
-
+	float light = dot(normalize(vertex_pos), normalize(lightPos));
+	light = clamp(light, 0, 1);
+	float dist = abs(distance(campos, vertex_pos));
+	dist = dist / 1000;
+	dist = clamp(dist, 0, 1);
+	color.rgb = vec3(1, 1, 1) * (pow(light, 800) * 0.5 + light * 0.5);
+	color.rgb *= vec3(0.25 * dist, 0.5 * dist, 1.0 * dist);
+	color.a = 1;
 }

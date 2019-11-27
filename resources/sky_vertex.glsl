@@ -1,43 +1,23 @@
 #version 330 core
 
-uniform mat4 ModelViewProjectionMatrix;
-uniform vec3 v3CameraPos;     // The camera's current position
+layout(location = 0) in vec3 vertPos;
+layout(location = 1) in vec3 vertNor;
+layout(location = 2) in vec2 vertTex;
 
-uniform vec3 v3LightDir;      // Direction vector to the light source
-
-uniform vec3 v3InvWavelength; // 1 / pow(wavelength, 4) for RGB
-
-uniform float fCameraHeight;    // The camera's current height
-
-uniform float fCameraHeight2;   // fCameraHeight^2
-
-uniform float fOuterRadius;     // The outer (atmosphere) radius
-
-uniform float fOuterRadius2;    // fOuterRadius^2
-
-
-uniform float fInnerRadius;     // The inner (planetary) radius
-
-uniform float fInnerRadius2;    // fInnerRadius^2
-
-uniform float fKrESun;          // Kr * ESun
-
-
-uniform float fKmESun;          // Km * ESun
-
-uniform float fKr4PI;           // Kr * 4 * PI
-
-uniform float fKm4PI;           // Km * 4 * PI
-
-
-uniform float fScale;           // 1 / (fOuterRadius - fInnerRadius)
-
-uniform float fScaleOverScaleDepth; // fScale / fScaleDepth
-
+uniform mat4 P;
+uniform mat4 V;
+uniform mat4 M;
+out vec3 vertex_pos;
+out vec3 vertex_normal;
+out vec2 vertex_tex;
 
 void main()
 {
-	vec3 tpos1 = vertPos + normalize(vertPos) * height;
+	vec3 tpos1 = vertPos;
 	vec4 tpos =  M * vec4(tpos1, 1.0);
 	gl_Position = P * V * tpos;
+
+	vertex_normal = vec4(M * vec4(normalize(vertPos),0.0)).xyz;
+	vertex_pos = tpos.xyz;
+	vertex_tex = vec2(vertex_normal.x / 2.0 + 0.5, vertex_normal.y / 2.0 + 0.5);
 }
