@@ -30,6 +30,6 @@ void main()
 
 color.rgb = texture(tex, vertex_tex * 50).rgb;
 color.a=1;
-color.rgb *= (length(vertex_pos) - 1000) / 100.0 + 0.4;
+color.rgb *= (length(vertex_pos) - 5000) / 100.0 + 0.4;
 
 }
