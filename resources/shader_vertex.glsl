@@ -42,11 +42,11 @@ void main()
 	float baseheight = noise(vertPos, 4, 0.8, 1.0);
 	baseheight = pow(baseheight, 4)*3;
 	height = baseheight*height;
-	height*=.6;
+	height*=.1;
 
 	vec3 tpos1 = vertPos + normalize(vertPos) * height;
 
-	tpos1 = vertPos + normalize(vertPos) * .01;
+	tpos1 = vertPos + normalize(vertPos) * height;
 
 	vec4 tpos =  M * vec4(tpos1, 1.0);
 	gl_Position = P * V * tpos;

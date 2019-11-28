@@ -45,7 +45,7 @@ public:
 		lookAt = glm::vec4(0, 0, -1, 1);
 		latitude = 3.1415926 / 2.0;
 		longitude = 3.1415926 / 2.0;
-		height = PLANET_RADIUS + 17;
+		height = PLANET_RADIUS + 30;
 		rot = 0;
 		rotT = 0.0;
 		pos = glm::vec3(cos(latitude) * cos(longitude) * (-height),
