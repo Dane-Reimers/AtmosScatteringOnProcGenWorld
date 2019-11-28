@@ -1,0 +1,368 @@
+/*
+gnu-new.css -- css stylesheet used on www.gnu.org
+
+Copyright (C) 2006 Free Software Foundation
+
+Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation
+files (the "Software"), to deal in the Software without
+restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following
+conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+*/
+
+@import url('/gnu.css');
+
+@media screen{
+
+  body{
+  padding: 0;
+  margin: 0;
+  font-family: "Liberation Sans", "Bitstream Vera Sans", sans-serif;
+  font-size: 86%;
+  background-color: #fff;
+  }
+
+  p{
+  line-height: 1.5em;
+  }
+
+  #wrapper{
+  margin: 0;
+  background-color: transparent;
+  padding: 0em;
+  position: relative;
+  }
+
+  #top2{
+  padding: 0;
+  clear: both;
+  background-color: #bd0000; /* #3F4C6B; is the normal blue */
+  padding-top: 2.4em;
+  }
+
+  #navigation-bar{background-color: #222;}
+
+  #navbar{text-align: center;}
+
+  #navbar ul{list-style: none; line-height: 2em; padding-left: 0; margin-left: 0;}
+
+  #navbar li{display: inline;}
+
+  #navbar li a{margin-right: 0.5em; color: #ddd; font-weight: bold; font-size: 1.0em; padding: 0.2em 0.3em 0.2em 0.3em; text-decoration: none; background-color: #555;}
+
+  #navbar li a:hover{background-color: transparent; color: yellow; text-decoration: underline;}
+
+
+  #searcher{
+  line-height: 2.1em;
+  text-align: right;
+  padding-right: 0.6em;
+  background-color: transparent;
+  margin-bottom: 0.4em;
+  margin-top: 0em;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  }
+
+#fsflinks{
+position: absolute;
+top: 0;
+left: 0;
+font-size: 0.9em;
+background-color: #333;
+width: 100%;
+height: 2.4em;
+}
+
+#fsflinks ul{
+list-style: none;
+padding-left: 100px;
+}
+
+#fsflinks li {
+        display: inline;
+        padding-left: 0.3em;
+        border-left: 1px solid #333;
+}
+
+#fsflinks li:first-child {
+        border-left: 0;
+        padding-left: 0;
+}
+
+#fsflinks li a{
+padding-left: 0.5em;
+color: #ccc !important;
+}
+
+
+  #searcher label{
+  text-transform: uppercase;
+  color: #666;
+  font-weight: bold;
+  font-size: 0.7em;
+  }
+
+  #banner{
+  text-align: center;
+  margin: 0 auto 0 auto;
+  max-width: 75em;
+  padding: 1em;
+  height: 7em;
+  }
+
+  #banner h1{
+  padding-top: 0.1em;
+  font-size: 130%;
+  color: #fff;
+  }
+
+  #links{
+  margin: 0;
+  padding: 0;
+  margin-left: 100px;
+  margin-right: 100px;
+  list-style: none;
+  }
+
+  #links li{
+  display: inline;
+  border-left: 1px solid #fff;
+  padding-left: 0.7em;
+  padding-right: 0.5em;
+  }
+
+  #links li:first-child {
+        border-left: 0;
+        padding-left: 0;
+  }
+
+  #links li a{color: #fff !important; font-weight: bold;}
+
+  #gnulogo{
+  float: left;
+  margin-top: -3em;
+  }
+
+  #dbdlogo{
+  float: right;
+  margin-top: -3em;
+  }
+
+  #header {
+  float:left;
+  width:100%;
+  background:#fff url("/graphics/bg.png") repeat-x bottom;
+  font-size:93%;
+  line-height:normal;
+  }
+  #header ul {
+  margin:0;
+  padding:10px 10px 0;
+  list-style:none;
+  }
+  #header li {
+  float:left;
+  background:url("/graphics/left.png") no-repeat left top;
+  margin:0;
+  padding:0 0 0 9px;
+  }
+  #header a {
+  float:left;
+  display:block;
+  background:url("/graphics/right.png") no-repeat right top;
+  padding:5px 15px 4px 6px;
+  text-decoration:none;
+  font-weight:bold;
+  color:#765;
+  }
+
+  #header a:hover {
+  color:#333;
+  }
+  #header #current {
+  background-image:url("/graphics/left_on.png");
+  background-repeat: no-repeat;
+  }
+  #header #current a {
+  background-image:url("/graphics/right_on.png");
+  background-repeat: no-repeat;
+  color:#333;
+  padding-bottom:5px;
+  }
+
+  #columns, #footer{
+  clear: both;
+  padding-left: 1em; padding-right: 1em;
+  margin: 1em auto 0 auto;
+  max-width: 75em;
+  }
+
+  #columns{position: relative;}
+
+
+
+  #footer{
+  background-color: #fff;
+  border-top: 2px solid #ddd;
+  margin-top: 3em;
+  }
+
+  .netscape4{
+  display: none !important;
+  height: 0;
+  }
+
+
+
+#sidebar {
+position: absolute;
+top: -1em;
+right: 1em;
+margin-top: 1em;
+font-size: 0.9em;
+float: right;
+margin-left: 1.5em;
+margin-bottom: 1em;
+padding: 1em;
+background-color: #e5e5e5;
+border: 3px solid #ddd;
+}
+
+#sidebar h3{text-align: center; margin-top: 0; text-transform: uppercase; font-size: 1em;}
+
+#sidebar ul{margin-bottom: 1.2em; padding-left: 1em;margin-left: 0;}
+
+#content{margin-right: 21em;}
+
+#footer{margin: auto; position: relative;}
+
+
+
+/* CSS classes for doing things like two columns */
+
+.rowOfBoxes {
+  clear: both;
+}
+
+.quarter, .oneThird, .half, .twoThirds, .fullWidth {
+  margin: 1em 0;
+  float: left;
+  border-left: 1px solid rgb(204,204,204);
+}
+
+.quarter {
+  width: 21%;
+  padding: 0 1.9%;
+}
+
+.oneThird {
+  width: 28%;
+  padding: 0 1.9%;
+}
+
+.half {
+  text-align: left;
+  width: 46%;
+  padding: 0 1.9%;
+}
+
+.half h3{padding: 0; margin: 0; font-size: 1.8em;}
+
+.twoThirds {
+  text-align: left;
+  width: 63%;
+  padding: 0 1.9%;
+}
+
+.fullWidth {
+  text-align: left;
+  width: 96%;
+  padding: 0 1.2em;
+  border-left: none;
+}
+
+.filler {  /* use with an empty <p> element to add padding to the end of a text box */
+  border: 1px solid white;
+}
+
+.noBorderOnLeft {
+  border-left: none;
+}
+
+.dividingBorderAbove {
+  border-top: 1px solid rgb(204,204,204);
+}
+
+#translations{margin: 0 auto 0 auto; max-width: 73em;  padding: 1em; margin-bottom: 2em; background-color: #ffc;}
+
+#translations h3, #translations h4{padding-top: 0; margin-top: 0; text-align: left; font-size: 1em;}
+
+#magicwrapper{background-color: lime; width: 65em; margin: 0 auto 0 auto;}
+
+#validator{position: absolute; bottom: 0; right: 1em;}
+
+/* as per peterb request */
+
+h2, h3{text-align: center; margin-bottom: 1em;}
+
+.announcement{float: right; background-color: #ffb; color: #333; font-size: 1.0em; text-align: center; border: 1px solid #333; margin-right: 2em; margin-top: 1em; margin-bottom: 1em; margin-left: 1.5em; width: 18em; padding: 0.4em;}
+}
+
+.infobox{background-color: #ffb; padding: 0.4em; border: 1px solid #eee;}
+
+.infobox h4, .infobox p{margin: 0; padding: 0;}
+
+img{ border: 0; }
+
+/* gecko enhancements */
+
+#sidebar, #translations, roundedBox{
+
+-moz-border-radius: 1em;
+
+ }
+
+#rms-image{
+width: 200px;
+height: 219px;
+float: right;
+margin-left: 1em; margin-bottom: 1em;
+border: 1px solid #ddd;
+background-image: url('/graphics/rms2005chrys.jpg');
+}
+
+.lyrics{background-color: whitesmoke; font-style: italic; width: 20em; padding: 2em; border: 2px solid #e5e5e5; margin-left: 2em;}
+
+#gplv3-dogear{ position: absolute; top: -1px; left: -1px; height: 120px; width: 120px; }
+
+hr { display: none; }
+
+.nocenter{ text-align: left; }
+
+/* Licensing */
+/* This is for licenses/gpl-faq.html. */
+
+table#gpl-compat-matrix { border-collapse: collapse; }
+
+table#gpl-compat-matrix td, th.gpl-matrix-border {
+    text-align: center; border: 1px solid black; margin: 0;
+    padding: .3em; }
+
+th.gpl-matrix-license { text-align: right; }
+
+tr.gpl-matrix-use-type { border-top: 2px solid black; }
+
+table#gpl-compat-matrix td.ok { background-color: #ccffcc; }
+table#gpl-compat-matrix td.mok { background-color: #e4ffcc; }
+table#gpl-compat-matrix td.nok { background-color: #dddddd; }
+

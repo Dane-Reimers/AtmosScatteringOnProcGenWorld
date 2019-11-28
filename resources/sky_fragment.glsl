@@ -14,9 +14,10 @@ void main()
 	float light = dot(normalize(vertex_pos), normalize(lightPos));
 	light = clamp(light, 0, 1);
 	float dist = abs(distance(campos, vertex_pos));
-	dist = dist / 1000;
+	dist = dist / 650;
 	dist = clamp(dist, 0, 1);
-	color.rgb = vec3(1, 1, 1) * (pow(light, 800) * 0.5 + light * 0.5);
+	dist = pow(dist, 1.001);
+	color.rgb = vec3(1, 1, 1) * (pow(light, 800) * 0.75 + light * 0.5);
 	color.rgb *= vec3(0.25 * dist, 0.5 * dist, 1.0 * dist);
 	color.a = 1;
 }

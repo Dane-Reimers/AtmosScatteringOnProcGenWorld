@@ -1,0 +1,44 @@
+Graphics Library Helper aka glh
+Copyright (C) 2001-2011 Vrej Melkonian All Rights Reserved.
+
+
+
+A PERSONAL MESSAGE
+You are encouraged to use this library linked to your program whether commercial, educational, or just a demo. You are encouraged to tell others about it.
+You are encouraged to send suggestions, send bug reports etc etc etc.
+The copyright notice must be present somewhere in your product.
+See the LEGAL MUMBO-JUMBO FOLLOWS section.
+
+*NEW*
+The DLL should not be installed system wide for release version of
+your software. It's better to keep it in your program's directory
+since some functions may be removed/renamed.
+
+email: vmelkon@yahoo.com
+
+
+
+LEGAL MUMBO-JUMBO FOLLOWS
+
+This Software(*), glhlib created by Vrej Melkonian, is open source under the LGPL license.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this Software and associated documentation files (the "Software"), to deal in the
+Software without restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHOR BE LIABLE
+FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
+THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
+
+
+*Software: All the files provided including this file.
+

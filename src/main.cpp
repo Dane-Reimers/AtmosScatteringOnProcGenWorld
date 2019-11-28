@@ -19,7 +19,8 @@ using namespace std;
 using namespace glm;
 shared_ptr<Shape> shape;
 
-#define PLANET_RADIUS 100.0
+
+#define PLANET_RADIUS 1000.0
 
 double get_last_elapsed_time()
 {
@@ -33,55 +34,85 @@ class camera
 {
 public:
 	glm::vec3 pos;
-	glm::vec4 dir;
-	int w, a, s, d, j, k;
-	float latitude, longitude, height, rot;
+	glm::vec4 dir, lookAt, prevLookDir;
+	int w, a, s, d, j, k, left, right, up, down;
+	float longitude, latitude, height, rot;
+	float rotX, rotY, rotT;
 	camera()
 	{
 		w = a = s = d = j = k = 0;
-		pos = glm::vec3(0, 0, 0);
 		dir = glm::vec4(0, 0, -1, 1);
+		lookAt = glm::vec4(0, 0, -1, 1);
 		latitude = 3.1415926 / 2.0;
 		longitude = 3.1415926 / 2.0;
 		height = PLANET_RADIUS + 17;
 		rot = 0;
+		rotT = 0.0;
+		pos = glm::vec3(cos(latitude) * cos(longitude) * (-height),
+						cos(latitude) * sin(longitude) * (-height),
+						sin(latitude) * (-height));
+
+		prevLookDir = vec4(1.0 / pos.x, 1.0 / pos.y, -2.0 / pos.z, 1);
 	}
 	glm::mat4 process(double ftime)
 	{
 		float speed = 0;
 		if (w == 1)
-			speed = 1*ftime;
+			speed = -0.25*ftime;
 		else if (s == 1)
-			speed = -1*ftime;
+			speed = 0.25*ftime;
+		
+		rot = 0;
+		if (a == 1)
+			rot += 0.5*ftime;
+		else if(d==1)
+			rot += -0.5*ftime;
+
+		if (up == 1)
+			latitude += 0.25*ftime;
+		else if(down == 1)
+			latitude += -0.25*ftime;
+
+		if (left == 1)
+			longitude += -0.3*ftime;
+		else if(right == 1)
+			longitude += 0.3*ftime;
 		
 		float heightSpeed = 0;
 		if (j == 1)
-			heightSpeed = 1 * ftime;
+			heightSpeed = 16 * ftime;
 		else if (k == 1)
-			heightSpeed = -1 * ftime;
-
-		if (a == 1)
-			rot += 1*ftime;
-		else if(d==1)
-			rot += -1*ftime;
-
-		glm::mat4 R = glm::rotate(glm::mat4(1), rot, normalize(pos));
-		dir = vec4(0, 0, -1, 0);
-		dir = dir*R;
+			heightSpeed = -16 * ftime;
 
 		height += heightSpeed;
 
-		longitude += 0.5 * speed * dot(normalize(vec3(0, 0, dir.z)), vec3(0, 0, 1));
-		latitude -= speed * dot(normalize(vec3(dir.x, 0, 0.00000001)), vec3(1, 0, 0));
-		pos = glm::vec3(cos(longitude) * cos(latitude) * (-height),
-						cos(longitude) * sin(latitude) * (-height),
-						sin(longitude) * (-height));
-		glm::mat4 T = glm::translate(glm::mat4(1), pos);
-		glm::mat4 R2 = glm::rotate(glm::mat4(1), longitude, vec3(-1.0, 0.0, 0.0));
-		glm::mat4 R3 = glm::rotate(glm::mat4(1), -latitude + 3.1415926f / 2.0f, vec3(0.0, -1.0, 0.0));
+		//glm::mat4 RLat = glm::rotate(glm::mat4(1), latitude, vec3(1, 0, 0));
+		//glm::mat4 RLon = glm::rotate(glm::mat4(1), longitude, vec3(0, 1, 0));
+
+		//glm::mat4 T = glm::translate(glm::mat4(1), vec3(0, -height, 0));
+
+		//vec4 tpos = vec4(0, 0, 0, 1);
+		//tpos = RLat * RLon * T * tpos;
+		//pos = vec3(tpos.x, tpos.y, tpos.z);
 
 
-		return R3*R2*R*T;
+
+		glm::mat4 RotLook = glm::rotate(glm::mat4(1), rot, normalize(pos));
+
+		vec4 lookDir = vec4(1.0 / pos.x, 1.0 / pos.y, -2.0 / pos.z, 1);
+		lookDir = RotLook * prevLookDir;
+
+		vec3 rotPosVec = cross(normalize(vec3(lookDir.x, lookDir.y, lookDir.z)), normalize(pos));
+		glm::mat4 RotPos = glm::rotate(glm::mat4(1), speed, rotPosVec);
+		prevLookDir = RotPos * lookDir;
+
+		vec4 newPos = RotPos * vec4(pos.x, pos.y, pos.z, 1);
+		pos = vec3(newPos.x, newPos.y, newPos.z);
+
+
+		glm::mat4 view = glm::lookAt(pos, vec3(lookDir.x, lookDir.y, lookDir.z), normalize(pos));
+		 
+		return view;
 	}
 };
 
@@ -95,7 +126,7 @@ public:
 	WindowManager * windowManager = nullptr;
 
 	// Our shader program
-	std::shared_ptr<Program> prog, heightshader;
+	std::shared_ptr<Program> prog, skyProg;
 
 	// Contains vertex information for OpenGL
 	GLuint VertexArrayID;
@@ -161,6 +192,38 @@ public:
 		if (key == GLFW_KEY_K && action == GLFW_RELEASE)
 		{
 			mycam.k = 0;
+		}
+		if (key == GLFW_KEY_LEFT && action == GLFW_PRESS)
+		{
+			mycam.left = 1;
+		}
+		if (key == GLFW_KEY_LEFT && action == GLFW_RELEASE)
+		{
+			mycam.left = 0;
+		}
+		if (key == GLFW_KEY_RIGHT && action == GLFW_PRESS)
+		{
+			mycam.right = 1;
+		}
+		if (key == GLFW_KEY_RIGHT && action == GLFW_RELEASE)
+		{
+			mycam.right = 0;
+		}
+		if (key == GLFW_KEY_UP && action == GLFW_PRESS)
+		{
+			mycam.up = 1;
+		}
+		if (key == GLFW_KEY_UP && action == GLFW_RELEASE)
+		{
+			mycam.up = 0;
+		}
+		if (key == GLFW_KEY_DOWN && action == GLFW_PRESS)
+		{
+			mycam.down = 1;
+		}
+		if (key == GLFW_KEY_DOWN && action == GLFW_RELEASE)
+		{
+			mycam.down = 0;
 		}
 	}
 
@@ -270,7 +333,7 @@ public:
 		char filepath[1000];
 
 		//texture 1
-		string str = resourceDirectory + "/grass.jpg";
+		string str = resourceDirectory + "/dirt.jpg";
 		strcpy(filepath, str.c_str());
 		unsigned char* data = stbi_load(filepath, &width, &height, &channels, 4);
 		glGenTextures(1, &Texture);
@@ -282,51 +345,13 @@ public:
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 		glGenerateMipmap(GL_TEXTURE_2D);
-		//texture 2
-		str = resourceDirectory + "/sky.jpg";
-		strcpy(filepath, str.c_str());
-		data = stbi_load(filepath, &width, &height, &channels, 4);
-		glGenTextures(1, &Texture2);
-		glActiveTexture(GL_TEXTURE1);
-		glBindTexture(GL_TEXTURE_2D, Texture2);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
-		glGenerateMipmap(GL_TEXTURE_2D);
-
-		//texture 3
-		str = resourceDirectory + "/height.png";
-		strcpy(filepath, str.c_str());
-		data = stbi_load(filepath, &width, &height, &channels, 4);
-		glGenTextures(1, &HeightTex);
-		glActiveTexture(GL_TEXTURE1);
-		glBindTexture(GL_TEXTURE_2D, HeightTex);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
-		glGenerateMipmap(GL_TEXTURE_2D);
-
 
 		//[TWOTEXTURES]
 		//set the 2 textures to the correct samplers in the fragment shader:
 		GLuint Tex1Location = glGetUniformLocation(prog->pid, "tex");//tex, tex2... sampler in the fragment shader
-		GLuint Tex2Location = glGetUniformLocation(prog->pid, "tex2");
 		// Then bind the uniform samplers to texture units:
 		glUseProgram(prog->pid);
 		glUniform1i(Tex1Location, 0);
-		glUniform1i(Tex2Location, 1);
-
-		Tex1Location = glGetUniformLocation(heightshader->pid, "tex");//tex, tex2... sampler in the fragment shader
-		Tex2Location = glGetUniformLocation(heightshader->pid, "tex2");
-		// Then bind the uniform samplers to texture units:
-		glUseProgram(heightshader->pid);
-		glUniform1i(Tex1Location, 0);
-		glUniform1i(Tex2Location, 1);
-
 
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -344,6 +369,23 @@ public:
 		glEnable(GL_DEPTH_TEST);
 
 		// Initialize the GLSL program.
+		skyProg = std::make_shared<Program>();
+		skyProg->setVerbose(true);
+		skyProg->setShaderNames(resourceDirectory + "/sky_vertex.glsl", resourceDirectory + "/sky_fragment.glsl");
+		if (!skyProg->init())
+		{
+			std::cerr << "One or more shaders failed to compile... exiting!" << std::endl;
+			exit(1);
+		}
+		skyProg->addUniform("P");
+		skyProg->addUniform("V");
+		skyProg->addUniform("M");
+		skyProg->addUniform("campos");
+		skyProg->addAttribute("vertPos");
+		skyProg->addAttribute("vertNor");
+		skyProg->addAttribute("vertTex");
+
+		// Initialize the GLSL program.
 		prog = std::make_shared<Program>();
 		prog->setVerbose(true);
 		prog->setShaderNames(resourceDirectory + "/shader_vertex.glsl", resourceDirectory + "/shader_fragment.glsl");
@@ -359,23 +401,6 @@ public:
 		prog->addAttribute("vertPos");
 		prog->addAttribute("vertNor");
 		prog->addAttribute("vertTex");
-
-		// Initialize the GLSL program.
-		heightshader = std::make_shared<Program>();
-		heightshader->setVerbose(true);
-		heightshader->setShaderNames(resourceDirectory + "/height_vertex.glsl", resourceDirectory + "/height_frag.glsl");
-		if (!heightshader->init())
-		{
-			std::cerr << "One or more shaders failed to compile... exiting!" << std::endl;
-			exit(1);
-		}
-		heightshader->addUniform("P");
-		heightshader->addUniform("V");
-		heightshader->addUniform("M");
-		heightshader->addUniform("camoff");
-		heightshader->addUniform("campos");
-		heightshader->addAttribute("vertPos");
-		heightshader->addAttribute("vertTex");
 	}
 
 
@@ -388,11 +413,6 @@ public:
 	{
 		double frametime = get_last_elapsed_time();
 		//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-		static bool initialized = false;
-		if (!initialized) {
-			mycam.pos.y -= PLANET_RADIUS + 17;
-			initialized = true;
-		}
 
 		// Get current frame buffer size.
 		int width, height;
@@ -424,10 +444,30 @@ public:
 		float trans = 0;// sin(t) * 2;
 		glm::mat4 RotateY = glm::rotate(glm::mat4(1.0f), w, glm::vec3(0.0f, 1.0f, 0.0f));
 		float angle = -3.1415926/2.0;
-		glm::mat4 S = glm::scale(glm::mat4(1.0f), glm::vec3(PLANET_RADIUS, PLANET_RADIUS, PLANET_RADIUS));
+		glm::mat4 S = glm::scale(glm::mat4(1.0f), glm::vec3(PLANET_RADIUS + 150, PLANET_RADIUS + 150, PLANET_RADIUS + 150));
 
 		M = S;
 
+
+		// Draw the sky using GLSL.
+		skyProg->bind();
+
+		V = mycam.process(frametime);
+		//send the matrices to the shaders
+		glUniformMatrix4fv(skyProg->getUniform("P"), 1, GL_FALSE, &P[0][0]);
+		glUniformMatrix4fv(skyProg->getUniform("V"), 1, GL_FALSE, &V[0][0]);
+		glUniformMatrix4fv(skyProg->getUniform("M"), 1, GL_FALSE, &M[0][0]);
+		glUniform3fv(skyProg->getUniform("campos"), 1, &mycam.pos[0]);
+
+		glDisable(GL_DEPTH_TEST);
+		shape->draw(skyProg,FALSE);
+
+		glEnable(GL_DEPTH_TEST);
+
+		skyProg->unbind();
+
+		S = glm::scale(glm::mat4(1.0f), glm::vec3(PLANET_RADIUS, PLANET_RADIUS, PLANET_RADIUS));
+		M = S;
 		// Draw the box using GLSL.
 		prog->bind();
 

@@ -1,0 +1,451 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fswiss\fcharset0 Arial;}}
+{\*\generator Msftedit 5.41.21.2509;}\viewkind4\uc1\pard\b\f0\fs32 All glh functions, by section (Block)\par
+\b0\fs20 This file is not necessarily up to date but most functions are listed here.\par
+You should have a look ar the header file (glhlib.h) to see all the functions.\par
+\par
+\par
+/*Block 0 -start*/\par
+void GLHLIB_API glhInitLibrary();\par
+void GLHLIB_API glhShutDownLibrary();\par
+/*Block 0 -end*/\par
+\par
+\par
+/*Block 1 -start*/\par
+//****************************************************************************\par
+//THIS IS THE INFORMATION BLOCK.\par
+//Collect information on glh, glu, GL, GL ES.\par
+//The glh project will either be compiled for GL or GL ES.\par
+\par
+const char* GLHLIB_API glhGetString(GLenum language, GLenum token);\par
+GLfloat GLHLIB_API glhGetFloat(GLenum token);\par
+GLfloat GLHLIB_API glhGetOpenGLMainVersion();\par
+GLfloat GLHLIB_API glhGetGLSLMainVersion();\par
+GLfloat GLHLIB_API glhGetShaderModel();\par
+GLfloat GLHLIB_API glhGetGLUMainVersion();\par
+void GLHLIB_API glhGetOpenGLMainVersionAsString(char *buffer);\par
+void GLHLIB_API glhGetGLSLMainVersionAsString(char *buffer);\par
+void GLHLIB_API glhGetShaderModelAsString(char *buffer);\par
+void GLHLIB_API glhGetGLUMainVersionAsString(char *buffer);\par
+void GLHLIB_API glhGetOpenGLSubVersionAsString(char *buffer);\par
+void GLHLIB_API glhGetOpenGLDriverVersionAsString(char *buffer);\par
+GLint GLHLIB_API glhIsRunningInHardwareMode();\par
+GLint GLHLIB_API glhGetGLDeviceCaps_GL_1_5(char *errorMessage, GLint adapterCount, GLint deviceType, GLCAPS_GL_1_5 *pcaps);\par
+GLint GLHLIB_API glhGetGLDeviceCaps_GL_2_0(char *errorMessage, GLint adapterCount, GLint deviceType, GLCAPS_GL_2_0 *pcaps);\par
+GLint GLHLIB_API glhGetGLDeviceCaps_ARB_vp_1_0(char *errorMessage, GLint adapterCount, GLint deviceType, GLCAPS_ARB_vp_1_0 *pcaps);\par
+GLint GLHLIB_API glhGetGLDeviceCaps_ARB_fp_1_0(char *errorMessage, GLint adapterCount, GLint deviceType, GLCAPS_ARB_fp_1_0 *pcaps);\par
+GLint GLHLIB_API glhGetGLDeviceCaps_GL2_0_GLSL(char *errorMessage, GLint adapterCount, GLint deviceType, GLCAPS_GL_2_0_GLSL *pcaps);\par
+GLint GLHLIB_API glhIsGLExtensionSupported(const char *extensionName);\par
+GLint GLHLIB_API glhIsWGLExtensionSupported(HDC hdc, const char *extensionName);\par
+GLint GLHLIB_API glhIdentifyVendor();\par
+GLint GLHLIB_API glhCopyOpenGLErrorInto_cBuffer(char *pstring);\par
+/*Block 1 -end*/\par
+\par
+\par
+/*Block 2 -start*/\par
+//****************************************************************************\par
+//TEXTURE SCALING OPERATIONS. DONE IN SOFTWARE.\par
+GLint GLHLIB_API glhScaleImage_asm386(GLenum format, GLboolean isUseLinearOrPointSample,\par
+\tab\tab GLint dataAlignment,\par
+\tab\tab GLint widthin, GLint heightin,\par
+\tab\tab GLubyte *datain,\par
+\tab\tab GLint widthout, GLint heightout,\par
+\tab\tab GLubyte *dataout);\par
+GLint GLHLIB_API glhScaleImage3D_asm386(GLenum format, GLboolean isUseLinearOrPointSample,\par
+\tab\tab GLint dataAlignment,\par
+\tab\tab GLint widthin, GLint heightin, GLint depthin,\par
+\tab\tab GLubyte *datain,\par
+\tab\tab GLint widthout, GLint heightout, GLint depthout,\par
+\tab\tab GLubyte *dataout);\par
+GLint GLHLIB_API glhScaleImage_asm386_MMX(GLenum format, GLboolean isUseLinearOrPointSample,\par
+\tab\tab GLint dataAlignment,\par
+\tab\tab GLint widthin, GLint heightin,\par
+\tab\tab GLubyte *datain,\par
+\tab\tab GLint widthout, GLint heightout,\par
+\tab\tab GLubyte *dataout);\par
+GLint GLHLIB_API glhScaleImage2_asm386(GLenum format, GLboolean isUseLinearOrPointSample,\par
+\tab\tab GLint dataAlignment,\par
+\tab\tab GLint widthin, GLint heightin,\par
+\tab\tab GLubyte *datain,\par
+\tab\tab GLint widthout, GLint heightout,\par
+\tab\tab GLubyte *dataout);\par
+/*Block 2 -end*/\par
+\par
+/*Block 3 -start*/\par
+//****************************************************************************\par
+//TEXTURE MIPMAP GENERATION AND UPLOAD T OPENGL\par
+//Some functions that are similar to gluBuild2DMipmaps and extra things.\par
+void GLHLIB_API glhTexSubImage2DMipmaps(GLint xoffset,\par
+\tab\tab\tab\tab GLint yoffset, GLsizei width, GLsizei height,\par
+\tab\tab\tab\tab GLsizei textureWidth, GLsizei textureHeight,\par
+\tab\tab\tab\tab GLenum format,\par
+\tab\tab\tab\tab GLenum type, const GLvoid *pixels);\par
+GLint GLHLIB_API glhBuild2DMipmaps(GLint components, GLint dataAlignment, GLint width, GLint height,\par
+\tab\tab\tab\tab GLboolean isPromoteToHigherPowerOn, GLenum format, const GLubyte *data);\par
+GLint GLHLIB_API glhBuildCubeMapMipmaps(GLint components, GLint dataAlignment, GLint width, GLint height,\par
+\tab\tab\tab\tab GLboolean isPromoteToHigherPowerOn, GLenum format, const GLubyte *data);\par
+GLint GLHLIB_API glhBuild2DNormalMipmaps(GLint components, GLint dataAlignment, GLint width, GLint height, GLboolean isPromoteToHigherPowerOn, GLenum format, const GLubyte *data);\par
+GLint GLHLIB_API glhBuild2DNormalMipmapsf(GLint components, GLint dataAlignment, GLint width, GLint height,\par
+\tab\tab\tab\tab GLboolean isPromoteToHigherPowerOn, GLenum format, const GLfloat *data);\par
+GLint GLHLIB_API glhBuildCubeMapNormalMipmaps(GLint components, GLint dataAlignment, GLint width, GLint height, GLboolean isPromoteToHigherPowerOn, GLenum format, const GLubyte *data);\par
+GLint GLHLIB_API glhBuildCubeMapNormalMipmapsf(GLint components, GLint dataAlignment, GLint width, GLint height,\par
+\tab\tab\tab\tab GLboolean isPromoteToHigherPowerOn, GLenum format, const GLfloat *data);\par
+GLint GLHLIB_API glhBuildNormalizationCubeMap(GLint dataAlignment, GLint width, GLint height, GLenum format, GLubyte *data);\par
+GLint GLHLIB_API glhBuildNormalizationCubeMapf(GLint dataAlignment, GLint width, GLint height, GLenum format, GLfloat *data);\par
+/*Block 3 -end*/\par
+\par
+/*Block 4 -start*/\par
+//****************************************************************************\par
+//MISCELLANEOUS FUNCTIONS\par
+void GLHLIB_API glhRandomNumberi(GLint *result);\par
+void GLHLIB_API glhRandomNumberf(GLfloat *result);\par
+void GLHLIB_API glhFastFresnelTerm(GLfloat *result, GLfloat *cosAngle, GLfloat refractionIndex, GLint count);\par
+/*Block 4 -end*/\par
+\par
+/*Block 5 -start*/\par
+//****************************************************************************\par
+//PERLIN NOISE RELATED\par
+void GLHLIB_API glhPerlinRegenerateTable();\par
+GLint GLHLIB_API glhPerlinNoise1D(GLfloat *result, GLint interpolationQuality, GLint mode, GLint optimize, GLfloat posx, GLfloat persistence, GLint numberOfOctaves, GLint *boolOctave);\par
+GLint GLHLIB_API glhPerlinNoise2D(GLfloat *result, GLint interpolationQuality, GLint mode, GLint optimize, GLfloat *pos, GLfloat persistence, GLint numberOfOctaves, GLint *boolOctave);\par
+GLint GLHLIB_API glhPerlinNoise3D(GLfloat *result, GLint interpolationQuality, GLint mode, GLint optimize, GLfloat *pos, GLfloat persistence, GLint numberOfOctaves, GLint *boolOctave);\par
+/*Block 5 -end*/\par
+\par
+/*Block 6 -start*/\par
+/*Block 6 -end*/\par
+\par
+/*Block 7 -start*/\par
+//****************************************************************************\par
+//DEPTH OF FEILD EFFECT\par
+void GLHLIB_API glhAccumFrustumf(GLfloat left, GLfloat right, GLfloat bottom, GLfloat top,\par
+\tab\tab\tab\tab\tab\tab GLfloat zNear, GLfloat zFar, GLfloat pixdx, GLfloat pixdy,\par
+\tab\tab\tab\tab\tab\tab GLfloat eyedx, GLfloat eyedy, GLfloat focus, GLint *viewport);\par
+void GLHLIB_API glhAccumPerspectivef(GLfloat fovyInDegrees, GLfloat aspectRatio, GLfloat zNear, GLfloat zFar,\par
+\tab\tab\tab\tab\tab   GLfloat pixdx, GLfloat pixdy, GLfloat eyedx, GLfloat eyedy,\par
+\tab\tab\tab\tab\tab   GLfloat focus, GLint *viewport);\par
+GLint GLHLIB_API glhRender_DOF_SceneAAf(GLfloat fovyInDegrees, GLfloat aspectRatio,\par
+\tab\tab\tab\tab\tab GLfloat zNear, GLfloat zFar, GLfloat eyedx, GLfloat eyedy,\par
+\tab\tab\tab\tab\tab GLfloat focus, GLint AccumQuality, GLfloat jitterFactor, GLint &jitter, GLint *viewport);\par
+/*Block 7 -end*/\par
+\par
+/*Block 8 -start*/\par
+void GLHLIB_API glhInitializeHints(GLenum mode);\par
+/*Block 8 -end*/\par
+\par
+/*Block 9 -start*/\par
+//****************************************************************************\par
+//SOFTWARE TRANSFORM OPERATIONS. DOES NOT USE OPENGL.\par
+GLint GLHLIB_API glhProjectd(GLdouble objx, GLdouble objy, GLdouble objz,\par
+\tab\tab\tab\tab GLdouble *modelview, GLdouble *projection,\par
+\tab\tab\tab\tab GLint *viewport,\par
+\tab\tab\tab\tab GLdouble *windowCoordinate);\par
+GLint GLHLIB_API glhProjectf(GLfloat objx, GLfloat objy, GLfloat objz,\par
+\tab\tab\tab\tab GLfloat *modelview, GLfloat *projection,\par
+\tab\tab\tab\tab GLint *viewport,\par
+\tab\tab\tab\tab GLfloat *windowCoordinate);\par
+\par
+GLint GLHLIB_API glhUnProjectd(GLdouble winx, GLdouble winy, GLdouble winz,\par
+\tab\tab\tab\tab GLdouble *modelview, GLdouble *projection,\par
+\tab\tab\tab\tab GLint *viewport,\par
+\tab\tab\tab\tab GLdouble *objectCoordinates);\par
+GLint GLHLIB_API glhUnProjectf(GLfloat winx, GLfloat winy, GLfloat winz,\par
+\tab\tab\tab\tab GLfloat *modelview, GLfloat *projection,\par
+\tab\tab\tab\tab GLint *viewport,\par
+\tab\tab\tab\tab GLfloat *objectCoordinates);\par
+GLint GLHLIB_API glhProjectf_2(GLint totalVertex4D, GLfloat *objectVertex4D,\par
+\tab\tab\tab\tab GLfloat *modelview_projection,\par
+\tab\tab\tab\tab GLint *viewport,\par
+\tab\tab\tab\tab GLfloat *windowCoordinate4D);\par
+GLint GLHLIB_API glhProjectf_3(GLint totalVertex3D, GLfloat *objectVertex3D,\par
+\tab\tab\tab\tab GLfloat *modelview_projection,\par
+\tab\tab\tab\tab GLint *viewport,\par
+\tab\tab\tab\tab GLfloat *windowCoordinate3D);\par
+GLint GLHLIB_API glhUnProjectf_2(GLint totalVertex4D, GLfloat *windowCoordinate4D,\par
+\tab\tab\tab\tab GLfloat *inverse_modelview_projection,\par
+\tab\tab\tab\tab GLint *viewport,\par
+\tab\tab\tab\tab GLfloat *objectVertex4D);\par
+GLint GLHLIB_API glhUnProjectf_3(GLint totalVertex3D, GLfloat *windowCoordinate3D,\par
+\tab\tab\tab\tab GLfloat *inverse_modelview_projection,\par
+\tab\tab\tab\tab GLint *viewport,\par
+\tab\tab\tab\tab GLfloat *objectVertex3D);\par
+GLint GLHLIB_API glhProjectf_SSE_Aligned_2(GLint totalVertex4D, GLfloat *objectVertex4D,\par
+\tab\tab\tab\tab  GLfloat *modelview_projection,\par
+\tab\tab\tab\tab  GLint *viewport,\par
+\tab\tab\tab\tab  GLfloat *windowCoordinate4D);\par
+GLint GLHLIB_API glhProjectf_SSE_Aligned_WarmCache_2(GLint totalVertex4D, GLfloat *objectVertex4D,\par
+\tab\tab\tab\tab  GLfloat *modelview_projection,\par
+\tab\tab\tab\tab  GLint *viewport,\par
+\tab\tab\tab\tab  GLfloat *windowCoordinate4D);\par
+GLint GLHLIB_API glhProjectf_SSE_Unaligned_2(GLint totalVertex4D, GLfloat *objectVertex4D,\par
+\tab\tab\tab\tab  GLfloat *modelview_projection,\par
+\tab\tab\tab\tab  GLint *viewport,\par
+\tab\tab\tab\tab  GLfloat *windowCoordinate4D);\par
+GLint GLHLIB_API glhUnProjectf_SSE_Aligned_2(GLint totalVertex4D, GLfloat *windowCoordinate4D,\par
+\tab\tab\tab\tab GLfloat *inverse_modelview_projection,\par
+\tab\tab\tab\tab GLint *viewport,\par
+\tab\tab\tab\tab GLfloat *objectVertex4D);\par
+GLint GLHLIB_API glhUnProjectf_SSE_Aligned_WarmCache_2(GLint totalVertex4D, GLfloat *windowCoordinate4D,\par
+\tab\tab\tab\tab GLfloat *inverse_modelview_projection,\par
+\tab\tab\tab\tab GLint *viewport,\par
+\tab\tab\tab\tab GLfloat *objectVertex4D);\par
+GLint GLHLIB_API glhUnProjectf_SSE_Unaligned_2(GLint totalVertex4D, GLfloat *windowCoordinate4D,\par
+\tab\tab\tab\tab GLfloat *inverse_modelview_projection,\par
+\tab\tab\tab\tab GLint *viewport,\par
+\tab\tab\tab\tab GLfloat *objectVertex4D);\par
+GLint GLHLIB_API glhMultiplyMatrixByVector4by4f_1(GLint totalVector4D, GLfloat *vector4D,\par
+\tab\tab\tab\tab GLfloat *matrix,\par
+\tab\tab\tab\tab GLfloat *result4D);\par
+GLint GLHLIB_API glhMultiplyMatrixByVector4by4f_2(GLint totalVector3D, GLfloat *vector3D,\par
+\tab\tab\tab\tab GLfloat *matrix,\par
+\tab\tab\tab\tab GLfloat *result3D);\par
+GLint GLHLIB_API glhMultiplyMatrixByVector4by4f_3(GLint totalVector3D, GLfloat *vector3D,\par
+\tab\tab\tab\tab GLfloat *matrix,\par
+\tab\tab\tab\tab GLfloat *result3D);\par
+GLint GLHLIB_API glhMultiplyMatrixByVector4by4f_SSE_Aligned_1(GLint totalVector4D, GLfloat *vector4D,\par
+\tab\tab\tab\tab GLfloat *matrix,\par
+\tab\tab\tab\tab GLfloat *result4D);\par
+GLint GLHLIB_API glhMultiplyMatrixByVector4by4f_SSE_Aligned_WarmCache_1(GLint totalVector4D, GLfloat *vector4D,\par
+\tab\tab\tab\tab GLfloat *matrix,\par
+\tab\tab\tab\tab GLfloat *result4D);\par
+void GLHLIB_API glhMultiplyMatrixByMatrix4by4f_1(GLfloat *leftMatrix, GLfloat *rightMatrix, GLfloat *result);\par
+void GLHLIB_API glhMultiplyMatrixByMatrix4by4f_2(GLint countMatrix, GLfloat *leftMatrix, GLfloat *rightMatrix, GLfloat *result);\par
+void GLHLIB_API glhMultiplyMatrixByMatrix4by4f_SSE_Aligned_WarmCache_1(GLfloat *leftMatrix, GLfloat *rightMatrix, GLfloat *result);\par
+void GLHLIB_API glhMultiplyMatrixByMatrix4by4f_3DNow(GLfloat *leftMatrix, GLfloat *rightMatrix, GLfloat *result);\par
+void GLHLIB_API glhMultiplyMatrixByMatrix4by4f_3DNow_1(GLfloat *leftMatrix, GLfloat *rightMatrix, GLfloat *result);\par
+/*Block 9 -end*/\par
+\par
+/*Block 10 -start*/\par
+GLint GLHLIB_API glhExtractLookAtFromMatrixd2(GLdouble *matrix, GLdouble *eyePosition3D, GLdouble *center3D, GLdouble *upVector3D);\par
+GLint GLHLIB_API glhExtractLookAtFromMatrixf2(GLfloat *matrix, GLfloat *eyePosition3D, GLfloat *center3D, GLfloat *upVector3D);\par
+GLint GLHLIB_API glhIsMatrixRotationMatrixd(GLdouble *matrix);\par
+GLint GLHLIB_API glhIsMatrixRotationMatrixf(GLfloat *matrix);\par
+void GLHLIB_API glhExtractAnglesFromRotationMatrixd2(GLdouble *matrix, GLdouble *xAngleRadians, GLdouble *yAngleRadians, GLdouble *zAngleRadians);\par
+void GLHLIB_API glhExtractAnglesFromRotationMatrixf2(GLfloat *matrix, GLfloat *xAngleRadians, GLfloat *yAngleRadians, GLfloat *zAngleRadians);\par
+/*Block 10 -end*/\par
+\par
+/*Block 11 -start*/\par
+GLint GLHLIB_API glhLowerPowerOfTwo(GLint width, GLint *widthOpenGL, GLint height, GLint *heightOpenGL);\par
+GLint GLHLIB_API glhHigherPowerOfTwo(GLint width, GLint *widthOpenGL, GLint height, GLint *heightOpenGL);\par
+GLint GLHLIB_API glhLowerPowerOfTwo2(GLint value, GLint *newValue);\par
+GLint GLHLIB_API glhHigherPowerOfTwo2(GLint value, GLint *newValue);\par
+/*Block 11 -end*/\par
+\par
+/*Block 12 -start*/\par
+//**************************************************************************************************\par
+//SOFTWARE MATRIX OPERATIONS. DOES NOT USE OPENGL.\par
+void GLHLIB_API glhLoadIdentityd2(GLdouble *matrix);\par
+void GLHLIB_API glhLoadIdentityf2(GLfloat *matrix);\par
+void GLHLIB_API glhTranslated2(GLdouble *matrix, GLdouble x, GLdouble y, GLdouble z);\par
+void GLHLIB_API glhTranslatef2(GLfloat *matrix, GLfloat x, GLfloat y, GLfloat z);\par
+void GLHLIB_API glhScaled2(GLdouble *matrix, GLdouble x, GLdouble y, GLdouble z);\par
+void GLHLIB_API glhScalef2(GLfloat *matrix, GLfloat x, GLfloat y, GLfloat z);\par
+void GLHLIB_API glhRotated2(GLdouble *matrix, GLdouble angleInRadians, GLdouble x, GLdouble y, GLdouble z);\par
+void GLHLIB_API glhRotatef2(GLfloat *matrix, GLfloat angleInRadians, GLfloat x, GLfloat y, GLfloat z);\par
+void GLHLIB_API glhRotateAboutXd2(GLdouble *matrix, GLdouble angleInRadians);\par
+void GLHLIB_API glhRotateAboutXf2(GLfloat *matrix, GLfloat angleInRadians);\par
+void GLHLIB_API glhRotateAboutYd2(GLdouble *matrix, GLdouble angleInRadians);\par
+void GLHLIB_API glhRotateAboutYf2(GLfloat *matrix, GLfloat angleInRadians);\par
+void GLHLIB_API glhRotateAboutZd2(GLdouble *matrix, GLdouble angleInRadians);\par
+void GLHLIB_API glhRotateAboutZf2(GLfloat *matrix, GLfloat angleInRadians);\par
+void GLHLIB_API glhPerspectived2(GLdouble *matrix, GLdouble fovyInDegrees, GLdouble aspectRatio, GLdouble znear, GLdouble zfar);\par
+void GLHLIB_API glhPerspectivef2(GLfloat *matrix, GLfloat fovyInDegrees, GLfloat aspectRatio, GLfloat znear, GLfloat zfar);\par
+void GLHLIB_API glhFrustumd2(GLdouble *matrix, GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble znear, GLdouble zfar);\par
+void GLHLIB_API glhFrustumf2(GLfloat *matrix, GLfloat left, GLfloat right, GLfloat bottom, GLfloat top, GLfloat znear, GLfloat zfar);\par
+void GLHLIB_API glhOrthod2(GLdouble *matrix, GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble znear, GLdouble zfar);\par
+void GLHLIB_API glhOrthof2(GLfloat *matrix, GLfloat left, GLfloat right, GLfloat bottom, GLfloat top, GLfloat znear, GLfloat zfar);\par
+void GLHLIB_API glhMergedFrustumd2(GLdouble *matrix, GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble znear, GLdouble zfar);\par
+void GLHLIB_API glhMergedFrustumf2(GLfloat *matrix, GLfloat left, GLfloat right, GLfloat bottom, GLfloat top, GLfloat znear, GLfloat zfar);\par
+void GLHLIB_API glhMergedPerspectived2(GLdouble *matrix, GLdouble fovyInDegrees, GLdouble aspectRatio, GLdouble znear, GLdouble zfar);\par
+void GLHLIB_API glhMergedPerspectivef2(GLfloat *matrix, GLfloat fovyInDegrees, GLfloat aspectRatio, GLfloat znear, GLfloat zfar);\par
+void GLHLIB_API glhFrustumInfiniteFarPlaned2(GLdouble *matrix, GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble znear);\par
+void GLHLIB_API glhFrustumInfiniteFarPlanef2(GLfloat *matrix, GLfloat left, GLfloat right, GLfloat bottom, GLfloat top, GLfloat znear);\par
+void GLHLIB_API glhPerspectiveInfiniteFarPlaned2(GLdouble *matrix, GLdouble fovyInDegrees, GLdouble aspecRatio, GLdouble znear);\par
+void GLHLIB_API glhPerspectiveInfiniteFarPlanef2(GLfloat *matrix, GLfloat fovyInDegrees, GLfloat aspectRatio, GLfloat znear);\par
+void GLHLIB_API glhLookAtd2(GLdouble *matrix, GLdouble *eyePosition3D, GLdouble *center3D, GLdouble *upVector3D);\par
+void GLHLIB_API glhLookAtf2(GLfloat *matrix, GLfloat *eyePosition3D, GLfloat *center3D, GLfloat *upVector3D);\par
+void GLHLIB_API glhMultMatrixd2(GLdouble *result_leftMatrix, GLdouble *rightMatrix);\par
+void GLHLIB_API glhMultMatrixf2(GLfloat *result_leftMatrix, GLfloat *rightMatrix);\par
+void GLHLIB_API glhMultMatrixSwappedd2(GLdouble *result_rightMatrix, GLdouble *leftMatrix);\par
+void GLHLIB_API glhMultMatrixSwappedf2(GLfloat *result_rightMatrix, GLfloat *leftMatrix);\par
+void GLHLIB_API glhQuickInvertMatrixd2(GLdouble *m, GLdouble *result);\par
+void GLHLIB_API glhQuickInvertMatrixf2(GLfloat *m, GLfloat *result);\par
+void GLHLIB_API glhTransposeMatrixd2(GLdouble *result, GLdouble *m);\par
+void GLHLIB_API glhTransposeMatrixf2(GLfloat *result, GLfloat *m);\par
+GLint GLHLIB_API glhInvertMatrixd2(GLdouble *m, GLdouble *result);\par
+GLint GLHLIB_API glhInvertMatrixf2(GLfloat *m, GLfloat *result);\par
+void GLHLIB_API glhShadowMatrixd2(GLdouble *matrix, GLdouble *planeEquation, GLdouble *lightPosition);\par
+void GLHLIB_API glhShadowMatrixf2(GLfloat *matrix, GLfloat *planeEquation, GLfloat *lightPosition);\par
+void GLHLIB_API glhConstantSizeMatrixf2(GLfloat *newModelview, GLfloat *objectCenter, GLfloat *modelview_projection, GLfloat *modelview, GLint *viewport);\par
+void GLHLIB_API glhGeneralPlanarMirrorf_1(GLfloat *matrix, GLfloat *ptransformArray);\par
+void GLHLIB_API glhGeneralPlanarMirrorf_2(GLfloat *matrix, GLfloat *ptranslate, GLfloat *pselfRotate);\par
+/*Block 12 -end*/\par
+\par
+/*Block 13 -start*/\par
+//**************************************************************************************************\par
+//HARDWARE MATRIX OPERATIONS. USES OPENGL.\par
+//These functions build the matrix and call the appropriate function like glFrustumf (glFrustumd)\par
+//or glMultMatrixf (glMultMatrixd)\par
+//OpenGL ES offers glFrustumf, while OpenGL offers glFrustum\par
+void GLHLIB_API glhFrustumd(GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble znear, GLdouble zfar);\par
+void GLHLIB_API glhFrustumf(GLfloat left, GLfloat right, GLfloat bottom, GLfloat top, GLfloat znear, GLfloat zfar);\par
+void GLHLIB_API glhOrthod(GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble znear, GLdouble zfar);\par
+void GLHLIB_API glhOrthof(GLfloat left, GLfloat right, GLfloat bottom, GLfloat top, GLfloat znear, GLfloat zfar);\par
+void GLHLIB_API glhMergedFrustumd(GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble znear, GLdouble zfar);\par
+void GLHLIB_API glhMergedFrustumf(GLfloat left, GLfloat right, GLfloat bottom, GLfloat top, GLfloat znear, GLfloat zfar);\par
+void GLHLIB_API glhMergedPerspectived(GLdouble fovyInDegrees, GLdouble aspectRatio, GLdouble znear, GLdouble zfar);\par
+void GLHLIB_API glhMergedPerspectivef(GLfloat fovyInDegrees, GLfloat aspectRatio, GLfloat znear, GLfloat zfar);\par
+void GLHLIB_API glhFrustumInfiniteFarPlaned(GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble znear);\par
+void GLHLIB_API glhFrustumInfiniteFarPlanef(GLfloat left, GLfloat right, GLfloat bottom, GLfloat top, GLfloat znear);\par
+void GLHLIB_API glhPerspectiveInfiniteFarPlaned(GLdouble fovyInDegrees, GLdouble aspecRatio, GLdouble znear);\par
+void GLHLIB_API glhPerspectiveInfiniteFarPlanef(GLfloat fovyInDegrees, GLfloat aspectRatio, GLfloat znear);\par
+void GLHLIB_API glhPerspectived(GLdouble fovyInDegrees, GLdouble aspectRatio, GLdouble znear, GLdouble zfar);\par
+void GLHLIB_API glhPerspectivef(GLfloat fovyInDegrees, GLfloat aspectRatio, GLfloat znear, GLfloat zfar);\par
+void GLHLIB_API glhLookAtd(GLdouble *eyeVector3D, GLdouble *center3D, GLdouble *upVector3D);\par
+void GLHLIB_API glhLookAtf(GLfloat *eyeVector3D, GLfloat *center3D, GLfloat *upVector3D);\par
+void GLHLIB_API glhShadowMatrixd(GLdouble *planeEquation, GLdouble *lightPosition);\par
+void GLHLIB_API glhShadowMatrixf(GLfloat *planeEquation, GLfloat *lightPosition);\par
+void GLHLIB_API glhConstantSizeMatrixf(GLfloat *objectCenter, GLfloat *modelview_projection, GLfloat *modelview, GLint *viewport);\par
+/*Block 13 -end*/\par
+\par
+/*Block 14 -start*/\par
+//**************************************************************************************************\par
+//GLH ERROR DETECTION\par
+GLHLIB_API GLint glhGetError();\par
+GLHLIB_API GLint glhCopyErrorInto_cBuffer(char *pstring);\par
+/*Block 14 -end*/\par
+\par
+/*Block 15 -start*/\par
+//**************************************************************************************************\par
+//SOME NORMAL MAP AND HEIGHT MAP PROCESSING FUNCTIONS\par
+GLint GLHLIB_API glhConvertHeightMapToNormalMap(GLint dataAlignment, GLint width, GLint height, GLint border, GLfloat scaleFactor,\par
+\tab\tab\tab\tab\tab\tab\tab\tab GLboolean isPromoteToHigherPowerOn, GLenum format, const GLubyte *indata, GLenum outformat, GLubyte *outdata);\par
+GLint GLHLIB_API glhNormalMapReducer(GLint dataAlignment, GLint width, GLint height, GLint border, GLfloat weightFactor, GLenum format, const GLubyte *indata, GLubyte *outdata, GLint param);\par
+/*Block 15 -end*/\par
+\par
+\par
+/*Block 16 -start*/\par
+//**************************************************************************************************\par
+//NORMAL VECTOR, TANGENT VECTOR, BINORMAL VECTOR\par
+GLint GLHLIB_API glhComputeTangentAndBinormalVectors_v1_f(GLint totalIndices, GLuint *pindices, GLint totalVertex, GLint numCompVertex, GLfloat *pvertex, GLint numCompNormals, GLfloat *pnormals, GLint numCompTexCoord, GLfloat *ptexCoord, GLint numCompTangent, GLfloat *ptangent, GLint numCompBinormal, GLfloat *pbinormal);\par
+GLint GLHLIB_API glhComputeTangentAndBinormalVectors_v1_f_2(GLint totalIndices, GLushort *pindices, GLint totalVertex, GLint numCompVertex, GLfloat *pvertex, GLint numCompNormals, GLfloat *pnormals, GLint numCompTexCoord, GLfloat *ptexCoord, GLint numCompTangent, GLfloat *ptangent, GLint numCompBinormal, GLfloat *pbinormal);\par
+/*Block 16 -end*/\par
+\par
+/*Block 17 -start*/\par
+//**************************************************************************************************\par
+//SOFTWARE MATRIX STACK\par
+//If you find that your OpenGL's implementation limit is too low, you can use a software\par
+//matrix stack.\par
+//NOTE : The code is incomplete\par
+void GLHLIB_API glhGenMatrixStacks(GLint count, GLuint *stackID, GLint *stackIndex);\par
+void GLHLIB_API glhDeleteMatrixStacks(GLint count, GLuint *stackID);\par
+void GLHLIB_API glhMatrixStackParameteri(GLint stackIndex, GLint parameter, GLint value);\par
+void GLHLIB_API glhPushMatrix(GLint stackIndex);\par
+void GLHLIB_API glhPopMatrix(GLint stackIndex);\par
+void GLHLIB_API glhLoadIdentity(GLint stackIndex);\par
+void GLHLIB_API glhLoadMatrixf(GLint stackIndex, GLfloat *matrix);\par
+void GLHLIB_API glhMultMatrixf(GLint stackIndex, GLfloat *matrix);\par
+void GLHLIB_API glhMultMatrixf_SSE(GLint stackIndex, GLfloat *matrix);\par
+GLint GLHLIB_API glhGetMatrixfv(GLuint stackIndex, GLint index, GLfloat *matrix);\par
+GLint GLHLIB_API glhGetFloatv(GLuint stackIndex, GLint parameter, GLfloat *value);\par
+GLint GLHLIB_API glhGetIntegerv(GLuint stackIndex, GLint parameter, GLint *value);\par
+/*Block 17 -end*/\par
+\par
+/*Block 18 -start*/\par
+//REFLECTION / REFRACTION\par
+void GLHLIB_API glhComputeReflectedVectorf(GLfloat *reflected, GLfloat *pincidentVector, GLfloat *pnormal, GLint count);\par
+void GLHLIB_API glhComputeRefractedVectorf(GLfloat *refracted, GLfloat *pincidentVector, GLfloat *pnormal, GLfloat eta, GLint count);\par
+/*Block 18 -end*/\par
+\par
+/*Block 19 -start*/\par
+//****************************************************************************\par
+//QUATERNION RELATED\par
+void GLHLIB_API glhQuaternionIdentityf(GLfloat *quat);\par
+GLint GLHLIB_API glhQuaternionIsIdentityf(GLfloat *quat);\par
+GLint GLHLIB_API glhQuaternionIsPuref(GLfloat *quat);\par
+void GLHLIB_API glhQuaternionConjugatef(GLfloat *quat);\par
+void GLHLIB_API glhQuaternionMagnitudef(GLfloat *magnitude, GLfloat *quat);\par
+void GLHLIB_API glhQuaternionMagnitudeSquaredf(GLfloat *magnitude, GLfloat *quat);\par
+void GLHLIB_API glhQuaternionDotProductf(GLfloat *result, GLfloat *quat1, GLfloat *quat2);\par
+void GLHLIB_API glhQuaternionExpf(GLfloat *outquat, GLfloat *quat);\par
+void GLHLIB_API glhQuaternionLnf(GLfloat *outquat, GLfloat *quat);\par
+void GLHLIB_API glhQuaternionNormalizef(GLfloat *quat);\par
+void GLHLIB_API glhQuaternionMultiplyf(GLfloat *outquat, GLfloat *quat1, GLfloat *quat2);\par
+void GLHLIB_API glhQuaternionQuatToRotationMatrixf(GLfloat *matrix, GLfloat *quat);\par
+void GLHLIB_API glhQuaternionQuatToRotationMatrixTf(GLfloat *matrix, GLfloat *quat);\par
+void GLHLIB_API glhQuaternionRotationMatrixToQuatf(GLfloat *quat, GLfloat *matrix);\par
+void GLHLIB_API glhQuaternionRotationMatrixToQuatTf(GLfloat *quat, GLfloat *matrix);\par
+void GLHLIB_API glhQuaternionQuatToAxisAndAnglef(GLfloat *axis, GLfloat *angleInRadians, GLfloat *quat);\par
+void GLHLIB_API glhQuaternionAxisAndAngleToQuatf(GLfloat *quat, GLfloat *axis, GLfloat *angleInRadians);\par
+void GLHLIB_API glhQuaternionEulerAnglesToQuatf(GLfloat *quat, GLfloat roll, GLfloat pitch, GLfloat yaw);\par
+void GLHLIB_API glhQuaternionSLERPf(GLfloat *outquat, GLfloat *quat1, GLfloat *quat2, GLfloat t);\par
+/*Block 19 -end*/\par
+\par
+/*Block 20 -start*/\par
+//****************************************************************************\par
+//FLOATING POINT NUMBER MANIPULATION\par
+void GLHLIB_API glhPackFloatIntoUByte(GLubyte *outputNumber, GLfloat inputNumber);\par
+void GLHLIB_API glhUnpackUByteIntoFloat(GLfloat *outputNumber, const GLubyte *inputNumber);\par
+/*Block 20 -end*/\par
+\par
+/*Block 21 -start*/\par
+//****************************************************************************\par
+//GEOMETRY GENERATION\par
+GLint GLHLIB_API glhCreateCubef(glhCubeObject *pcube);\par
+GLint GLHLIB_API glhDeleteCubef(glhCubeObject *pcube);\par
+GLint GLHLIB_API glhCreateCylinderf(glhCylinderObject *pcylinder);\par
+GLint GLHLIB_API glhDeleteCylinderf(glhCylinderObject *pcylinder);\par
+GLint GLHLIB_API glhCreateSpheref(glhSphereObject *psphere);\par
+GLint GLHLIB_API glhDeleteSpheref(glhSphereObject *psphere);\par
+/*Block 21 -end*/\par
+\par
+/*Block 22 -start*/\par
+//****************************************************************************\par
+//COLOR SPACE CONVERSION\par
+void GLHLIB_API glhComputeHSVWithRGBf(GLfloat &hue, GLfloat &saturation, GLfloat &value, GLfloat red, GLfloat green, GLfloat blue);\par
+void GLHLIB_API glhComputeRGBWithHSVf(GLfloat &red, GLfloat &green, GLfloat &blue, GLfloat hue, GLfloat saturation, GLfloat value);\par
+void GLHLIB_API glhComputeBGRAWithHSVfub(GLuint &bgraColor, GLfloat hue, GLfloat saturation, GLfloat value, GLfloat alpha);\par
+void GLHLIB_API glhComputeRGBAWithHSVfub(GLuint &rgbaColor, GLfloat hue, GLfloat saturation, GLfloat value, GLfloat alpha);\par
+void GLHLIB_API glhComputeHSVWithBGRAubf(GLfloat &hue, GLfloat &saturation, GLfloat &value, GLfloat &alpha, GLuint bgraColor);\par
+void GLHLIB_API glhComputeHSVWithRGBAubf(GLfloat &hue, GLfloat &saturation, GLfloat &value, GLfloat &alpha, GLuint rgbaColor);\par
+/*Block 22 -end*/\par
+\par
+\par
+/*Block 23 -start*/\par
+//****************************************************************************\par
+//INTERSECTION TESTING\par
+GLint GLHLIB_API glhDoesRayCrossTrianglef(GLfloat *rayPoint1, GLfloat *rayDirection, GLfloat rayDirectionLengthSquared,\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab GLfloat *trianglePoint1, GLfloat *trianglePoint2,\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab GLfloat *triangleVector1, GLfloat *triangleVector2,\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab GLfloat triangleVector1LengthSquared, GLfloat triangleVector2LengthSquared,\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab GLfloat triangleVector1_DOT_triangleVector2,\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab GLfloat *pointOfIntersection);\par
+/*Block 23 -end*/\par
+\par
+/*Block 24 -start*/\par
+//****************************************************************************\par
+//PROCESSOR SECTION\par
+GLHLIB_API GLint glhDoesProcessorSupportMMX();\par
+GLHLIB_API GLint glhDoesProcessorSupportSSE();\par
+GLHLIB_API GLint glhDoesProcessorSupportSSE2();\par
+GLHLIB_API GLint glhDoesProcessorSupport3DNow();\par
+GLHLIB_API GLint glhDoesProcessorSupport3DNowExtended();\par
+GLHLIB_API GLint glhDoesOSSupportSSE();\par
+GLHLIB_API void glhGetProcessorInfo(char *pVendor, char *pName, char *pSpeedInMHz);\par
+/*Block 24 -end*/\par
+\par
+/*Block 25 -start*/\par
+//****************************************************************************\par
+//SHADER CODE RELATED\par
+GLint GLHLIB_API glhTranslateShader(GLint shaderTypeIn, const char *pshaderTextIn, GLint shaderTypeOut, char *pshaderTextOut, GLint maxLengthOfShaderTextOut);\par
+/*Block 25 -end*/\par
+\par
+/*Block 26 -start*/\par
+//****************************************************************************\par
+//MEMORY USAGE RELATED\par
+GLint GLHLIB_API glhGetMaxMipmapCount(GLint *count, GLenum target, GLint width, GLint height, GLint depth);\par
+GLint GLHLIB_API glhMemoryUsageWithMipmaps(GLint *total, GLenum target, GLint components, GLint dataAlignment, GLint width, GLint height, GLint depth, GLint lowRange, GLint highRange);\par
+GLint GLHLIB_API glhComputeFrameBufferUsage(GLint *memoryCount, GLint width, GLint height, GLint includeFrontBuffer, GLint bitsPerPixel_Color_FrontBuffer, GLint bitsPerPixel_Color, GLint depthAndStencilTogether, GLint depthBufferBits, GLint stencilBufferBits, GLint backBufferCount);\par
+/*Block 26 -end*/\par
+\par
+\par
+}
+ 

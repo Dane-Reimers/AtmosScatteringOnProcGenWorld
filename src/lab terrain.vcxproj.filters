@@ -41,5 +41,11 @@
     <None Include="..\resources\shader_vertex.glsl">
       <Filter>shaders</Filter>
     </None>
+    <None Include="..\resources\sky_fragment.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\resources\sky_vertex.glsl">
+      <Filter>shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>
