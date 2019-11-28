@@ -2,8 +2,8 @@
   main.cpp
 C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(46,1): warning C4305: '=': truncation from 'double' to 'float'
 C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(47,1): warning C4305: '=': truncation from 'double' to 'float'
-C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(61,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(63,16): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(61,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(63,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(67,1): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
 C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(69,1): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
 C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(72,1): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data

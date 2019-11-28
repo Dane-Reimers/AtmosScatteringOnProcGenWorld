@@ -20,7 +20,7 @@ using namespace glm;
 shared_ptr<Shape> shape;
 
 
-#define PLANET_RADIUS 1000.0
+#define PLANET_RADIUS 800.0
 
 double get_last_elapsed_time()
 {
@@ -58,9 +58,9 @@ public:
 	{
 		float speed = 0;
 		if (w == 1)
-			speed = -0.25*ftime;
+			speed = -0.125*ftime;
 		else if (s == 1)
-			speed = 0.25*ftime;
+			speed = 0.125*ftime;
 		
 		rot = 0;
 		if (a == 1)
@@ -444,7 +444,7 @@ public:
 		float trans = 0;// sin(t) * 2;
 		glm::mat4 RotateY = glm::rotate(glm::mat4(1.0f), w, glm::vec3(0.0f, 1.0f, 0.0f));
 		float angle = -3.1415926/2.0;
-		glm::mat4 S = glm::scale(glm::mat4(1.0f), glm::vec3(PLANET_RADIUS + 150, PLANET_RADIUS + 150, PLANET_RADIUS + 150));
+		glm::mat4 S = glm::scale(glm::mat4(1.0f), glm::vec3(PLANET_RADIUS + 300, PLANET_RADIUS + 300, PLANET_RADIUS + 300));
 
 		M = S;
 

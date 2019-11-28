@@ -125,13 +125,13 @@ void main()
         normalize(vPosition - campos),           // normalized ray direction
         campos,               // ray origin
         uSunPos,                        // position of the sun
-        1000.0,                           // intensity of the sun
-        1000,                         // radius of the planet in meters
-        1150,                         // radius of the atmosphere in meters
-        vec3(5.5e-6, 13.0e-6, 22.4e-6), // Rayleigh scattering coefficient
-        21e-6,                          // Mie scattering coefficient
-        8e1,                            // Rayleigh scale height
-        1.2e1,                          // Mie scale height
+        25.0,                           // intensity of the sun
+        760,                         // radius of the planet in meters
+        1100,                         // radius of the atmosphere in meters
+        vec3(2.5e-3, 6.0e-3, 11.4e-3), // Rayleigh scattering coefficient
+        21e-3,                          // Mie scattering coefficient
+        100,                            // Rayleigh scale height
+        20,                          // Mie scale height
         0.758                           // Mie preferred scattering direction
     );
 
