@@ -64,9 +64,9 @@ public:
 		
 		rot = 0;
 		if (a == 1)
-			rot += 0.5*ftime;
+			rot += 0.25*ftime;
 		else if(d==1)
-			rot += -0.5*ftime;
+			rot += -0.25*ftime;
 
 		if (up == 1)
 			latitude += 0.25*ftime;
@@ -250,16 +250,10 @@ public:
 		glfwGetFramebufferSize(window, &width, &height);
 		glViewport(0, 0, width, height);
 	}
-#define MESHSIZE 100
-	void init_mesh()
-	{
-	}
+
 	/*Note that any gl calls must always happen after a GL state is initialized */
 	void initGeom()
 	{
-		//initialize the net mesh
-		init_mesh();
-
 		string resourceDirectory = "../resources" ;
 		// Initialize mesh.
 		shape = make_shared<Shape>();
