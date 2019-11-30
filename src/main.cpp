@@ -78,33 +78,24 @@ public:
 		else if(right == 1)
 			longitude += 0.3*ftime;
 		
-		float heightSpeed = 0;
+		float heightSpeed = 1;
 		if (j == 1)
-			heightSpeed = 16 * ftime;
+			heightSpeed += 0.05 * ftime;
 		else if (k == 1)
-			heightSpeed = -16 * ftime;
+			heightSpeed += -0.05 * ftime;
 
-		height += heightSpeed;
-
-		//glm::mat4 RLat = glm::rotate(glm::mat4(1), latitude, vec3(1, 0, 0));
-		//glm::mat4 RLon = glm::rotate(glm::mat4(1), longitude, vec3(0, 1, 0));
-
-		//glm::mat4 T = glm::translate(glm::mat4(1), vec3(0, -height, 0));
-
-		//vec4 tpos = vec4(0, 0, 0, 1);
-		//tpos = RLat * RLon * T * tpos;
-		//pos = vec3(tpos.x, tpos.y, tpos.z);
-
+		glm::mat4 TransHeight = glm::scale(glm::mat4(1), vec3(heightSpeed, heightSpeed, heightSpeed));
+		pos = TransHeight * vec4(pos, 1);
 
 
 		glm::mat4 RotLook = glm::rotate(glm::mat4(1), rot, normalize(pos));
 
-		vec4 lookDir = vec4(1.0 / pos.x, 1.0 / pos.y, -2.0 / pos.z, 1);
-		lookDir = RotLook * prevLookDir;
+		vec4 lookDir = RotLook * prevLookDir;
 
 		vec3 rotPosVec = cross(normalize(vec3(lookDir.x, lookDir.y, lookDir.z)), normalize(pos));
 		glm::mat4 RotPos = glm::rotate(glm::mat4(1), speed, rotPosVec);
-		prevLookDir = RotPos * lookDir;
+		lookDir = RotPos * lookDir;
+		prevLookDir = lookDir;
 
 		vec4 newPos = RotPos * vec4(pos.x, pos.y, pos.z, 1);
 		pos = vec3(newPos.x, newPos.y, newPos.z);
@@ -262,59 +253,6 @@ public:
 #define MESHSIZE 100
 	void init_mesh()
 	{
-		//generate the VAO
-		glGenVertexArrays(1, &VertexArrayID);
-		glBindVertexArray(VertexArrayID);
-
-		//generate vertex buffer to hand off to OGL
-		glGenBuffers(1, &MeshPosID);
-		glBindBuffer(GL_ARRAY_BUFFER, MeshPosID);
-		vec3 vertices[MESHSIZE * MESHSIZE * 4];
-		for(int x=0;x<MESHSIZE;x++)
-			for (int z = 0; z < MESHSIZE; z++)
-				{
-				vertices[x * 4 + z*MESHSIZE * 4 + 0] = vec3(0.0, 0.0, 0.0) + vec3(x, 0, z);
-				vertices[x * 4 + z*MESHSIZE * 4 + 1] = vec3(1.0, 0.0, 0.0) + vec3(x, 0, z);
-				vertices[x * 4 + z*MESHSIZE * 4 + 2] = vec3(1.0, 0.0, 1.0) + vec3(x, 0, z);
-				vertices[x * 4 + z*MESHSIZE * 4 + 3] = vec3(0.0, 0.0, 1.0) + vec3(x, 0, z);
-				}
-		glBufferData(GL_ARRAY_BUFFER, sizeof(vec3) * MESHSIZE * MESHSIZE * 4, vertices, GL_DYNAMIC_DRAW);
-		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
-		//tex coords
-		float t = 1. / 100;
-		vec2 tex[MESHSIZE * MESHSIZE * 4];
-		for (int x = 0; x<MESHSIZE; x++)
-			for (int y = 0; y < MESHSIZE; y++)
-			{
-				tex[x * 4 + y*MESHSIZE * 4 + 0] = vec2(0.0, 0.0)+ vec2(x, y)*t;
-				tex[x * 4 + y*MESHSIZE * 4 + 1] = vec2(t, 0.0)+ vec2(x, y)*t;
-				tex[x * 4 + y*MESHSIZE * 4 + 2] = vec2(t, t)+ vec2(x, y)*t;
-				tex[x * 4 + y*MESHSIZE * 4 + 3] = vec2(0.0, t)+ vec2(x, y)*t;
-			}
-		glGenBuffers(1, &MeshTexID);
-		//set the current state to focus on our vertex buffer
-		glBindBuffer(GL_ARRAY_BUFFER, MeshTexID);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(vec2) * MESHSIZE * MESHSIZE * 4, tex, GL_STATIC_DRAW);
-		glEnableVertexAttribArray(1);
-		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (void*)0);
-
-		glGenBuffers(1, &IndexBufferIDBox);
-		//set the current state to focus on our vertex buffer
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndexBufferIDBox);
-		GLushort elements[MESHSIZE * MESHSIZE * 6];
-		int ind = 0;
-		for (int i = 0; i<MESHSIZE * MESHSIZE * 6; i+=6, ind+=4)
-			{
-			elements[i + 0] = ind + 0;
-			elements[i + 1] = ind + 1;
-			elements[i + 2] = ind + 2;
-			elements[i + 3] = ind + 0;
-			elements[i + 4] = ind + 2;
-			elements[i + 5] = ind + 3;
-			}			
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLushort)*MESHSIZE * MESHSIZE * 6, elements, GL_STATIC_DRAW);
-		glBindVertexArray(0);
 	}
 	/*Note that any gl calls must always happen after a GL state is initialized */
 	void initGeom()

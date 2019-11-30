@@ -38,11 +38,11 @@ out vec3 vertex_normal;
 out vec2 vertex_tex;
 void main()
 {
-	float height = noise(vertPos, 11, 3.0, 0.4);
-	float baseheight = noise(vertPos, 4, 0.8, 1.0);
-	baseheight = pow(baseheight, 4)*3;
+	float height = noise(vertPos, 11, 0.8, 0.8);
+	float baseheight = noise(vertPos, 4, 0.85, 0.6);
+	baseheight = pow(baseheight, 5) * 3;
 	height = baseheight*height;
-	height*=.1;
+	height *= 0.6;
 
 	vec3 tpos1 = vertPos + normalize(vertPos) * height;
 

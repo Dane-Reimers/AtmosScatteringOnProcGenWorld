@@ -10,9 +10,22 @@ C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(72,1): warning C4244: '+=': c
 C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(74,1): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
 C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(77,1): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
 C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(79,1): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(83,21): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(85,22): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(285,1): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(443,1): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(446,1): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(83,1): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(85,1): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(381,1): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Dev\IntroToGraphics\QuarterProject\src\main.cpp(384,1): warning C4305: 'initializing': truncation from 'double' to 'float'
+glfw3.lib(context.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(context.obj)' or at 'C:\Dev\IntroToGraphics\QuarterProject\Debug\glfw.pdb'; linking object as if no debug info
+glfw3.lib(init.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(init.obj)' or at 'C:\Dev\IntroToGraphics\QuarterProject\Debug\glfw.pdb'; linking object as if no debug info
+glfw3.lib(input.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(input.obj)' or at 'C:\Dev\IntroToGraphics\QuarterProject\Debug\glfw.pdb'; linking object as if no debug info
+glfw3.lib(monitor.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(monitor.obj)' or at 'C:\Dev\IntroToGraphics\QuarterProject\Debug\glfw.pdb'; linking object as if no debug info
+glfw3.lib(vulkan.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(vulkan.obj)' or at 'C:\Dev\IntroToGraphics\QuarterProject\Debug\glfw.pdb'; linking object as if no debug info
+glfw3.lib(window.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(window.obj)' or at 'C:\Dev\IntroToGraphics\QuarterProject\Debug\glfw.pdb'; linking object as if no debug info
+glfw3.lib(win32_init.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(win32_init.obj)' or at 'C:\Dev\IntroToGraphics\QuarterProject\Debug\glfw.pdb'; linking object as if no debug info
+glfw3.lib(win32_joystick.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(win32_joystick.obj)' or at 'C:\Dev\IntroToGraphics\QuarterProject\Debug\glfw.pdb'; linking object as if no debug info
+glfw3.lib(win32_monitor.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(win32_monitor.obj)' or at 'C:\Dev\IntroToGraphics\QuarterProject\Debug\glfw.pdb'; linking object as if no debug info
+glfw3.lib(win32_time.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(win32_time.obj)' or at 'C:\Dev\IntroToGraphics\QuarterProject\Debug\glfw.pdb'; linking object as if no debug info
+glfw3.lib(win32_tls.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(win32_tls.obj)' or at 'C:\Dev\IntroToGraphics\QuarterProject\Debug\glfw.pdb'; linking object as if no debug info
+glfw3.lib(win32_window.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(win32_window.obj)' or at 'C:\Dev\IntroToGraphics\QuarterProject\Debug\glfw.pdb'; linking object as if no debug info
+glfw3.lib(wgl_context.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(wgl_context.obj)' or at 'C:\Dev\IntroToGraphics\QuarterProject\Debug\glfw.pdb'; linking object as if no debug info
+glfw3.lib(egl_context.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(egl_context.obj)' or at 'C:\Dev\IntroToGraphics\QuarterProject\Debug\glfw.pdb'; linking object as if no debug info
   lab terrain.vcxproj -> C:\Dev\IntroToGraphics\QuarterProject\Debug\QuarterProject.exe
