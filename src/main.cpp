@@ -40,7 +40,7 @@ public:
 	float rotX, rotY, rotT;
 	camera()
 	{
-		w = a = s = d = j = k = 0;
+		w = a = s = d = j = k = down = up = 0;
 		dir = glm::vec4(0, 0, -1, 1);
 		lookAt = glm::vec4(0, 0, -1, 1);
 		latitude = 3.1415926 / 2.0;
@@ -64,9 +64,9 @@ public:
 		
 		rot = 0;
 		if (a == 1)
-			rot += 0.25*ftime;
+			rot += 0.5*ftime;
 		else if(d==1)
-			rot += -0.25*ftime;
+			rot += -0.5*ftime;
 
 		if (up == 1)
 			latitude += 0.25*ftime;
@@ -257,7 +257,7 @@ public:
 		string resourceDirectory = "../resources" ;
 		// Initialize mesh.
 		shape = make_shared<Shape>();
-		shape->loadMesh(resourceDirectory + "/sphere4.obj");
+		shape->loadMesh(resourceDirectory + "/mySphere.obj");
 		shape->resize();
 		shape->init();
 
@@ -271,19 +271,37 @@ public:
 		glGenTextures(1, &Texture);
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, Texture);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 		glGenerateMipmap(GL_TEXTURE_2D);
 
+		//texture 2
+		string str2 = resourceDirectory + "/stars2.jpg";
+		strcpy(filepath, str2.c_str());
+		unsigned char* data2 = stbi_load(filepath, &width, &height, &channels, 4);
+		glGenTextures(1, &Texture2);
+		glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, Texture2);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data2);
+		glGenerateMipmap(GL_TEXTURE_2D);
+
 		//[TWOTEXTURES]
 		//set the 2 textures to the correct samplers in the fragment shader:
 		GLuint Tex1Location = glGetUniformLocation(prog->pid, "tex");//tex, tex2... sampler in the fragment shader
+		GLuint Tex2Location = glGetUniformLocation(skyProg->pid, "tex");//tex, tex2... sampler in the fragment shader
 		// Then bind the uniform samplers to texture units:
 		glUseProgram(prog->pid);
 		glUniform1i(Tex1Location, 0);
+
+		glUseProgram(skyProg->pid);
+		glUniform1i(Tex2Location, 1);
 
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

@@ -32,12 +32,6 @@
     <None Include="..\resources\shader_fragment.glsl">
       <Filter>shaders</Filter>
     </None>
-    <None Include="..\resources\height_frag.glsl">
-      <Filter>shaders</Filter>
-    </None>
-    <None Include="..\resources\height_vertex.glsl">
-      <Filter>shaders</Filter>
-    </None>
     <None Include="..\resources\shader_vertex.glsl">
       <Filter>shaders</Filter>
     </None>

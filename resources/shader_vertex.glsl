@@ -25,6 +25,20 @@ float noise(vec3 position, int octaves, float frequency, float persistence) {
 	return total / maxAmplitude;
 }
 
+float calcNoise(vec3 position) {
+	float height = noise(position, 11, 0.6, 0.7);
+	float baseheight = noise(position, 4, 0.7, 0.8);
+	baseheight = pow(baseheight, 5) * 3;
+	height = baseheight*height;
+	height *= 0.6;
+	return height;
+}
+
+vec3 getNoisyPos(vec3 position) {
+	float height = calcNoise(position);
+	return position + normalize(position) * height;
+}
+
 
 layout(location = 0) in vec3 vertPos;
 layout(location = 1) in vec3 vertNor;
@@ -38,18 +52,23 @@ out vec3 vertex_normal;
 out vec2 vertex_tex;
 void main()
 {
-	float height = noise(vertPos, 11, 0.8, 0.8);
-	float baseheight = noise(vertPos, 4, 0.85, 0.6);
-	baseheight = pow(baseheight, 5) * 3;
-	height = baseheight*height;
-	height *= 0.6;
+   vec3 tpos1 = getNoisyPos(vertPos);
+float theta = .1; 
+    vec3 vecTangent = normalize(cross(tpos1, vec3(1.0, 0.0, 0.0))
+     + cross(tpos1, vec3(0.0, 1.0, 0.0)));
+    vec3 vecBitangent = normalize(cross(vecTangent, tpos1));
+    vec3 ptTangentSample = getNoisyPos(normalize(tpos1 + theta * normalize(vecTangent)));
+    vec3 ptBitangentSample = getNoisyPos(normalize(tpos1 + theta * normalize(vecBitangent)));
 
-	vec3 tpos1 = vertPos + normalize(vertPos) * height;
+     vec3 vecNorm = normalize(cross(ptTangentSample - tpos1, ptBitangentSample - tpos1));
+
+   
 
 	vec4 tpos =  M * vec4(tpos1, 1.0);
 	gl_Position = P * V * tpos;
 
-	vertex_normal = vec4(M * vec4(normalize(vertPos),0.0)).xyz;
+	vertex_normal = normalize(vec4(M * vec4(vertPos,0.0)).xyz);
+	vertex_tex = vertTex;
+	vertex_normal = vecNorm;
 	vertex_pos = tpos.xyz;
-	vertex_tex = vec2(vertex_normal.x, vertex_normal.y);
 }

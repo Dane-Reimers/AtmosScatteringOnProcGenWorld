@@ -6,7 +6,6 @@ in vec2 vertex_tex;
 uniform vec3 campos;
 
 uniform sampler2D tex;
-uniform sampler2D tex2;
 
 vec3 uSunPos = vec3(0, -1500, 0);
 #define PI 3.141592
@@ -138,5 +137,15 @@ void main()
     // Apply exposure.
     color3 = 1.0 - exp(-1.0 * color3);
 
-    color = vec4(color3, 1);
+	vec3 stars = texture(tex, vertex_tex * 10).rgb;
+
+	vec3 n = normalize(vertex_normal);
+	vec3 lp=vec3(0, 15000, 0);
+	vec3 ld = normalize(vertex_pos - lp);
+	float diffuse = dot(n,-ld);
+	diffuse = clamp(diffuse, 0, 1);
+
+    color.rgb = color3 * (1 - diffuse) + stars * (diffuse);
+	color.a = 1;
+
 }

@@ -17,7 +17,7 @@ void main()
 	vec4 tpos =  M * vec4(tpos1, 1.0);
 	gl_Position = P * V * tpos;
 
-	vertex_normal = vec4(M * vec4(normalize(vertPos),0.0)).xyz;
+	vertex_normal = normalize(vec4(M * vec4(vertPos,0.0)).xyz);
 	vertex_pos = tpos.xyz;
-	vertex_tex = vec2(vertex_normal.x / 2.0 + 0.5, vertex_normal.y / 2.0 + 0.5);
+	vertex_tex = vertTex;
 }
