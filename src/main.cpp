@@ -64,9 +64,9 @@ public:
 		
 		rot = 0;
 		if (a == 1)
-			rot += 0.5*ftime;
+			rot += 0.25*ftime;
 		else if(d==1)
-			rot += -0.5*ftime;
+			rot += -0.25*ftime;
 
 		if (up == 1)
 			latitude += 0.25*ftime;
