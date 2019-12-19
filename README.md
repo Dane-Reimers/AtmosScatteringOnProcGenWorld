@@ -1,188 +1,29 @@
-Lab 3 - Hello Triangle and Installing prerequisite software
+Atmospheric Scattering on a Procedurally Generated World
 ========================================
 
-Lab machines
+Project Description
 ------------
 
-The required development applications should already be installed. For the
-machines in 20-127, you can optionally use the Intel C++ compiler by running
+For this project I implemented atmospheric scattering with Rayleigh and Mie scattering on a procedurally generated landscape on a sphere in C++ using OpenGL.
 
-	> source /opt/intel/bin/compilervars.sh intel64
-
-You will then have access to `icc` (Intel C Compiler) and `icpc` (Intel C++
-Compiler).
-
-Ubuntu Linux
+Landscape
 ------------
 
-You'll need the following if you don't have them already.
+I started the project by making the procedurally generated landscape on a sphere. To do this I started by rendering a large sphere centered at the origin. Then, with the vertex shader I used a noise function to scale the heights of the vertices along their normals to produce a terrain. I also used a dirt texture to make the terrain look more realistic and calculate the normals of each vertex by checking 2 close points to use in lighting the terrain.
 
-	> sudo apt-get update
-	> sudo apt-get install g++
-	> sudo apt-get install cmake
-	> sudo apt-get install freeglut3-dev
-	> sudo apt-get install libxrandr-dev
-	> sudo apt-get install libxinerama-dev
-	> sudo apt-get install libxcursor-dev
-
-Although Eigen, GLFW, and GLEW are also available as packages, we'll download
-them separately. Feel free to get these packages, but we won't be using them
-for building our labs and assignments.
-
-Mac OS X
+Camera Movement
 --------
 
-You can use homebrew/macports or install these manually.
+Another aspect of the project was creating a camera class that would work well on my spherical world. To do this I kept track of the "up" vector (which was the normalized position) and "lookAt" vector of the camera. Each movement call, I first rotated the lookAt vector around the up vector by the amount of rotation from keyboard input. Then, I calculated the cross product of the up vector and the lookAt vector to find a vector to use to create a rotation matrix that would move the camera in the direction of the lookAt vector. Doing this created a camera that can look around the world and move in the direction it is facing, always staying at the planets surface.
 
-- Xcode developer tools. You'll need to log in with your Apple ID.
-- CMake (<https://cmake.org/download/>)
-
-Make sure the commands `g++` and `cmake` work from the command prompt.
-
-Windows
+Atmospheric Scattering
 -------
 
-You'll need to download these manually.
+The last part of the project was to implement atmospheric scattering to create the sky for my world. To create the effect I used a combination of Rayleigh and Mie scattering. Rayleigh scattering is the scattering of light waves by particles much smaller than the wavelength and produces the blue color of the sky during the day and the orange/red at sunset. Mie scattering is the scattering of light by particles of similar or greater size than the wavelength (ex. aerosols) and produces the glow around the sun. You can read more about these effects [here](<https://developer.nvidia.com/gpugems/GPUGems2/gpugems2_chapter16.html>). First, I rendered another sphere centered at the origin that contained the planet sphere. Then, I refactored code from [here](<https://github.com/wwwtyro/glsl-atmosphere>) to perform the scattering on the outer sphere. I also added stars to the night sky by linearly interpolating between the atmospheric scattering and an image of stars.
 
-- Visual Studio. Any version should work. I've tested Visual Studio 2015
-  (aka version 14) on Windows 8.
-- CMake (<https://cmake.org/download/>). Make sure to add CMake to the system
-  path when asked to do so.
-
-Make sure the command `cmake` works from the command prompt.
-
-**Install Eigen, GLFW, and GLEW**
-=================================
-
-Lab machines
+Functionality
 ------------
 
-For compatibility issues with the old version of g++ installed on the lab
-machines, we will be using these files on my home directory. Download these
-and extract them somewhere (e.g., `~/lib/`).
-
-- Eigen: `/home/sueda/lib/eigen-3.2.6.zip`
-- GLFW: `/home/sueda/lib/glfw-3.1.2.zip`
-- GLEW: `/home/sueda/lib/glew-1.13.0.tgz`
-
-All platforms except lab machines
----------------------------------
-
-For all other platforms, you can download the latest versions from the web.
-For each of these libraries, download and extract them somewhere (e.g.,
-`~/lib`).
-
-- Eigen: get the source from <http://eigen.tuxfamily.org/index.php?title=Main_Page>.
-- GLFW: get the source from <http://www.glfw.org/download.html>.
-- Glew
-  - OSX & Linux
-    - Get the source from <http://glew.sourceforge.net/>.
-    - Compile the source by typing `make`. (This could take a while.)
-  - Windows
-    - Get the Windows binaries from <http://glew.sourceforge.net/>.
-
-**Set the environment variables for Eigen, GLFW, and GLEW**
-===========================================================
-
-OSX & Linux
------------
-
-In `~/.bash_profile` (or `~/.bashrc` if `.bash_profile` doesn't exist), add the
-following lines.
-
-	export EIGEN3_INCLUDE_DIR=ABS_PATH_TO_EIGEN
-	export GLFW_DIR=ABS_PATH_TO_GLFW
-	export GLEW_DIR=ABS_PATH_TO_GLEW
-
-Set these variables to point to the directories that you extracted Eigen,
-GLFW, and GLEW to.
-
-Windows
--------
-
-Control Panel -> System -> Advanced -> Environment Variables -> User Variables
-
-- Set `EIGEN3_INCLUDE_DIR` to `ABS_PATH_TO_EIGEN`
-- Set `GLFW_DIR` to `ABS_PATH_TO_GLFW`
-- Set `GLEW_DIR` to `ABS_PATH_TO_GLEW`
-
-Important Note on Including Eigen and GLEW
-------------------------------------------
-
-- If you're having trouble linking with GLEW, make sure you `#define GLEW_STATIC` before you `#include <GL/glew.h>`.
-- If you're having trouble running your application with Eigen, try `#define EIGEN_DONT_ALIGN_STATICALLY` before you `#include <Eigen/Dense>`.
-
-**Building and Running the Lab/Assignment**
-===========================================
-
-All platforms
--------------
-
-Download and extract the lab file [here](/L00.zip):
-(<http://users.csc.calpoly.edu/~ssueda/teaching/CSC474/2016W/labs/L00/L00.zip>).
-
-We'll perform an "out-of- source" build, which means that the binary files
-will not be in the same directory as the source files. In the folder that
-contains CMakeLists.txt, run the following.
-
-	> mkdir build
-	> cd build
-
-Then run one of the following, depending on your choice of platform and IDE.
-
-OSX & Linux Makefile
---------------------
-
-	> cmake ..
-
-This will generate a Makefile that you can use to compile your code. To
-compile the code, run the generated Makefile.
-
-	> make -j4
-
-The `-j` argument speeds up the compilation by multithreading the compiler.
-This will generate an executable, which you can run by typing
-
-	> ./lab3
-
-!Note this assume a resources directory
-
-To build in release mode, use `ccmake ..` and change `CMAKE_BUILD_TYPE` to
-`Release`. Press 'c' to configure then 'g' to generate. Now `make -j4` will
-build in release mode.
-
-To change the compiler, read [this
-page](http://cmake.org/Wiki/CMake_FAQ#How_do_I_use_a_different_compiler.3F).
-The best way is to use environment variables before calling cmake. For
-example, to use the Intel C++ compiler:
-
-	> which icpc # copy the path
-	> CXX=/path/to/icpc cmake ..
-
-OSX Xcode
----------
-
-	> cmake -G Xcode ..
-
-This will generate `lab3.xcodeproj` project that you can open with Xcode.
-
-- To run, change the target to `lab3` by going to Product -> Scheme -> lab3.
-  Then click on the play button or press Command+R to run the application.
-- Edit the scheme to add command-line arguments (`../../resources`) or to run
-  in release mode.
-
-Windows Visual Studio 2015
---------------------------
-
-	> cmake -G "Visual Studio 14 2015" ..
-
-This will generate `lab3.sln` file that you can open with Visual Studio.
-Other versions of Visual Studio are listed on the CMake page
-(<https://cmake.org/cmake/help/latest/manual/cmake-generators.7.html>).
-
-- To build and run the project, right-click on `lab3` in the project explorer
-  and then click on "Set as Startup Project." Then press F7 (Build Solution)
-  and then F5 (Start Debugging).
-- To add a commandline argument (`../resources`), right-click on `lab3` in
-  the project explorer and then click on "Properties" and then click to
-  "Debugging."
+A and D keys rotate the camera on a plane tangent to the planet
+W and S keys move the camera forward and backward
+J and K keys adjust the camera height up and down
