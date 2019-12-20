@@ -2,7 +2,6 @@ Atmospheric Scattering on a Procedurally Generated World
 ========================================
 
 ![Screenshot of Final Product](images/sunset.PNG)
-<img src="images/sunset.PNG" width="50">
 
 Project Description
 ------------
@@ -14,8 +13,7 @@ Landscape
 
 I started the project by making the procedurally generated landscape on a sphere. To do this I started by rendering a large sphere centered at the origin. Then, with the vertex shader I used a noise function to scale the heights of the vertices along their normals to produce a terrain. I also used a dirt texture to make the terrain look more realistic and calculate the normals of each vertex by checking 2 close points to use in lighting the terrain.
 
-![Screenshot of Mesh with Noise Function](images/terrain.PNG)
-![Screenshot of Terrain with Texture Mapping](images/terrain2.PNG)
+![Screenshot of Mesh with Noise Function](images/terrain.PNG) ![Screenshot of Terrain with Texture Mapping](images/terrain2.PNG)
 
 Camera Movement
 --------
