@@ -2,6 +2,7 @@ Atmospheric Scattering on a Procedurally Generated World
 ========================================
 
 ![Screenshot of Final Product](images/sunset.PNG)
+<img src="images/sunset.PNG" width="50">
 
 Project Description
 ------------
