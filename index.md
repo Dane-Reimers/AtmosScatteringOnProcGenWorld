@@ -126,7 +126,7 @@
 <!-- A Centered image-->
 <center>
   <a>
-    <img src="images/sunset.png" width="100%">
+    <img src="images/sunset.PNG" width="100%">
   </a>
   <em>Screenshot of final product</em>
 </center>
@@ -138,14 +138,14 @@
 <p>I started the project by making the procedurally generated landscape on a sphere. To do this I started by rendering a large sphere centered at the origin. Then, with the vertex shader I used a noise function to scale the heights of the vertices along their normals to produce a terrain. I also used a dirt texture to make the terrain look more realistic and calculate the normals of each vertex by checking 2 close points to use in lighting the terrain.</p>
 <center>
   <a>
-    <img src="images/terrain.png" width="100%">
+    <img src="images/terrain.PNG" width="100%">
   </a>
   <em>Screenshot of the terrain with noise function in polygon mode</em>
 </center>
 
 <center>
   <a>
-    <img src="images/terrain2.png" width="100%">
+    <img src="images/terrain2.PNG" width="100%">
   </a>
   <em>Screenshot of the terrain</em>
 </center>
@@ -205,7 +205,7 @@
 <center>
 <h4>Stars</h4>
   <a>
-    <img src="images/stars.png" width="100%"/>
+    <img src="images/stars.PNG" width="100%"/>
   </a>
 </center>
 
