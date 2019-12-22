@@ -169,7 +169,6 @@
   </a>
   <em>Demo of camera movement</em>
 </center>
-</center>
 
 <h3>Atmospheric Scattering</h3>
 <p>The last part of the project was to implement atmospheric scattering to create the sky for my world. 
