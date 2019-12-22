@@ -167,7 +167,7 @@
 
 <center>
   <a>
-    <video width="100%" autoplay>
+    <video width="100%" controls>
       <source src="images/camera.mp4" type="video/mp4">
     </video>
   </a>
@@ -214,7 +214,7 @@
 <p>Here are some demonstrations of the final product.</p>
 <center>
   <a>
-    <video width="100%" autoplay>
+    <video width="100%" controls>
       <source src="images/final1.mp4" type="video/mp4">
     </video>
   </a>
@@ -224,7 +224,7 @@
 
 <center>
   <a>
-    <video width="100%" autoplay>
+    <video width="100%" controls>
       <source src="images/final2.mp4" type="video/mp4">
     </video>
   </a>
@@ -232,7 +232,7 @@
 
 <center>
   <a>
-    <video width="100%" autoplay>
+    <video width="100%" controls>
       <source src="images/final3.mp4" type="video/mp4">
     </video>
   </a>
