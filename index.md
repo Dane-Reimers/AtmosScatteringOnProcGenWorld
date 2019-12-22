@@ -112,7 +112,7 @@
 
 <h1>Atmospheric Scattering on Procedurally Generated Sphere</h1>
 
-<h4>Dane Reimers - CSC 471 - Fall 2019 - Christian Eckhardt</h4>
+<h4>Dane Reimers</h4>
 
 <article> <!-- This adds padding at the top and bottom -->
 
@@ -121,12 +121,12 @@
 
 <h3>Project Description</h3>
 
-<p>For my project I decided to implement atmospheric scattering with Rayleigh and Mie scattering on a procedurally generated landscape on a sphere.</p>
+<pThis project is an implementation of atmospheric scattering, using both Rayleigh and Mie scattering, on a procedurally generated landscape on a sphere.</p>
 
 <!-- A Centered image-->
 <center>
   <a>
-    <img src="sunset.png" width="100%">
+    <img src="images/sunset.png" width="100%">
   </a>
   <em>Screenshot of final product</em>
 </center>
@@ -138,14 +138,14 @@
 <p>I started the project by making the procedurally generated landscape on a sphere. To do this I started by rendering a large sphere centered at the origin. Then, with the vertex shader I used a noise function to scale the heights of the vertices along their normals to produce a terrain. I also used a dirt texture to make the terrain look more realistic and calculate the normals of each vertex by checking 2 close points to use in lighting the terrain.</p>
 <center>
   <a>
-    <img src="terrain.png" width="100%">
+    <img src="images/terrain.png" width="100%">
   </a>
   <em>Screenshot of the terrain with noise function in polygon mode</em>
 </center>
 
 <center>
   <a>
-    <img src="terrain2.png" width="100%">
+    <img src="images/terrain2.png" width="100%">
   </a>
   <em>Screenshot of the terrain</em>
 </center>
@@ -157,7 +157,7 @@
     Doing this created a camera that can look around the world and move in the direction it is facing, always staying at the planets surface.</p>
 <center>
   <a>
-    <img src="cameraVectors.png" width="50%">
+    <img src="images/cameraVectors.png" width="50%">
   </a>
   <br>
   <em>Visual representation of camera vectors</em>
@@ -167,7 +167,7 @@
 <center>
   <a>
     <video width=100% controls>
-      <source src="camera.mp4" type="video/mp4">
+      <source src="images/camera.mp4" type="video/mp4">
     </video>
   </a>
   <em>Demo of camera movement</em>
@@ -189,23 +189,23 @@
 <center>
 <h4>Examples of only Mie Scattering</h4>
   <a>
-    <img src="mie1.png" width="49%"/>
-    <img src="mie2.png" width="49%"/>
+    <img src="images/mie1.png" width="49%"/>
+    <img src="images/mie2.png" width="49%"/>
   </a>
 </center>
 
 <center>
 <h4>Examples of only Rayleigh Scattering</h4>
   <a>
-    <img src="rayleigh1.png" width="49%"/>
-    <img src="rayleigh2.png" width="49%"/>
+    <img src="images/rayleigh1.png" width="49%"/>
+    <img src="images/rayleigh2.png" width="49%"/>
   </a>
 </center>
 
 <center>
 <h4>Stars</h4>
   <a>
-    <img src="stars.png" width="100%"/>
+    <img src="images/stars.png" width="100%"/>
   </a>
 </center>
 
@@ -214,7 +214,7 @@
 <center>
   <a>
     <video width=100% controls>
-      <source src="final1.mp4" type="video/mp4">
+      <source src="images/final1.mp4" type="video/mp4">
     </video>
   </a>
 </center>
@@ -224,7 +224,7 @@
 <center>
   <a>
     <video width=100% controls>
-      <source src="final2.mp4" type="video/mp4">
+      <source src="images/final2.mp4" type="video/mp4">
     </video>
   </a>
 </center>
@@ -232,7 +232,7 @@
 <center>
   <a>
     <video width=100% controls>
-      <source src="final3.mp4" type="video/mp4">
+      <source src="images/final3.mp4" type="video/mp4">
     </video>
   </a>
 </center>
@@ -248,10 +248,10 @@
 <h3>Resources</h3>
 <ul>
   <li>
-    <a href="AtmosScatteringOnProcGenWorld.zip" download="AtmosScatteringOnProcGenWorld">Download Project</a>
+    <a href="https://github.com/Dane-Reimers/AtmosScatteringOnProcGenWorld">Github Link</a>
   </li>
   <li>
-    Contact Email: dvreimer@calpoly.edu
+    Contact Email: Dane.Reimers@gmail.com
   </li>
 </ul>
 
