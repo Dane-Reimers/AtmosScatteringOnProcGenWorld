@@ -155,6 +155,7 @@
     Each movement call, I first rotated the lookAt vector around the up vector by the amount of rotation from keyboard input. 
     Then, I calculated the cross product of the up vector and the lookAt vector to find a vector to use to create a rotation matrix that would move the camera in the direction of the lookAt vector. 
     Doing this created a camera that can look around the world and move in the direction it is facing, always staying at the planets surface.</p>
+    
 <center>
   <a>
     <img src="images/cameraVectors.png" width="50%">
@@ -166,7 +167,7 @@
 
 <center>
   <a>
-    <video width=100% controls>
+    <video width="100%" autoplay>
       <source src="images/camera.mp4" type="video/mp4">
     </video>
   </a>
@@ -213,7 +214,7 @@
 <p>Here are some demonstrations of the final product.</p>
 <center>
   <a>
-    <video width=100% controls>
+    <video width="100%" autoplay>
       <source src="images/final1.mp4" type="video/mp4">
     </video>
   </a>
@@ -223,7 +224,7 @@
 
 <center>
   <a>
-    <video width=100% controls>
+    <video width="100%" autoplay>
       <source src="images/final2.mp4" type="video/mp4">
     </video>
   </a>
@@ -231,7 +232,7 @@
 
 <center>
   <a>
-    <video width=100% controls>
+    <video width="100%" autoplay>
       <source src="images/final3.mp4" type="video/mp4">
     </video>
   </a>
