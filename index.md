@@ -250,9 +250,3 @@
     Contact Email: Dane.Reimers@gmail.com
   </li>
 </ul>
-
-</article>
-</section>
-</div>
-</body>
-</html>
