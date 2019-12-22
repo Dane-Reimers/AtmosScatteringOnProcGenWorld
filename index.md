@@ -121,7 +121,7 @@
 
 <h3>Project Description</h3>
 
-<pThis project is an implementation of atmospheric scattering, using both Rayleigh and Mie scattering, on a procedurally generated landscape on a sphere.</p>
+<p>This project is an implementation of atmospheric scattering, using both Rayleigh and Mie scattering, on a procedurally generated landscape on a sphere.</p>
 
 <!-- A Centered image-->
 <center>
