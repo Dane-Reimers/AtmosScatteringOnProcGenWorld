@@ -1,6 +1,5 @@
 <html>
 <head>
-  <title>CSC 471 Atmospheric Scattering on Procedurally Generated Sphere</title>
 
   <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
@@ -112,12 +111,9 @@
 
 <h1>Atmospheric Scattering on Procedurally Generated Sphere</h1>
 
-<h4>Dane Reimers</h4>
+<h4>By Dane Reimers</h4>
 
 <article> <!-- This adds padding at the top and bottom -->
-
-
-
 
 <h3>Project Description</h3>
 
@@ -256,4 +252,8 @@
   </li>
 </ul>
 
-</article></section></div></body></html>
+</article>
+</section>
+</div>
+</body>
+</html>
