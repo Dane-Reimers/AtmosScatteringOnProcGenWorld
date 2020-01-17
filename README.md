@@ -1,7 +1,7 @@
 Atmospheric Scattering on a Procedurally Generated World
 ========================================
 
-[Project Website](<https://dane-reimers.github.io/AtmosScatteringOnProcGenWorld/>)
+Please see the [Project Website](<https://dane-reimers.github.io/AtmosScatteringOnProcGenWorld/>) for a more detailed description.
 ------------
 
 ![Screenshot of Final Product](images/sunset.PNG)
